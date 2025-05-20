@@ -1,0 +1,48 @@
+
+
+{% if request.user.is_superuser %}
+
+<center>
+  <div class="mx-5">
+    <div class=" pt-5">
+      <div class="alert alert-success" role="alert">
+       <h1>Welcome to the Admin Panel!</h1> 
+      </div>
+      
+
+
+        <h2>Institution Settings</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save Settings</button>
+        </form>
+
+      
+    </div>
+
+    </div>
+    
+  </div>
+</center>
+
+{% else %}
+<center>
+  <div class="m-2 bg-light rounded shadow">
+    <h1 class="p-3">{{user}}'s Personal Information</h1>
+    <div class="card-header">
+      <center class="">
+        <p>Username: {{user.username}} </p>
+        <p>First Name: {{user.first_name}} </p>
+        <p>Last Name: {{user.last_name}} </p>
+        <p>Email: {{user.email}} </p>
+        <p>Last logged in: {{user.last_login}} </p>
+        <p>Joining date: {{user.date_joined}} </p>
+      </center>
+    </div>
+  </div>
+
+
+</center>
+{% endif %}
+

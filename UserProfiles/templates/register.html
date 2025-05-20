@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    <h1 class="text-center mt-5">Welcome to the User Profiles App</h1>
+    <p class="text-center">Please register or login to continue</p>
+<form method="post" class="w-50 mx-auto shadow p-4 mt-3">
+    <h1>{{type}} page</h1>
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <button class="btn btn-warning mb-5">{{type}}</button>
+</form>
+</center>
+    
+</body>
+</html>
