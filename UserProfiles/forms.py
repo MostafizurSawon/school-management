@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
-from .models import SiteSettings
+from .models import SiteSettings, Notice
 
 
 class RegistrationForm(UserCreationForm):
@@ -19,3 +19,9 @@ class SiteSettingsForm(forms.ModelForm):
     class Meta:
         model = SiteSettings
         fields = '__all__'
+
+class NoticeForm(forms.ModelForm):
+    class Meta:
+        model = Notice
+        fields = ['notice_title', 'date', 'notice_description', 'notice_file']
+

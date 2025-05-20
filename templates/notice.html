@@ -1,0 +1,64 @@
+<aside class="flex flex-col space-y-1 bg-[#00214715] min-h-[400px] p-4">
+                <!-- Title -->
+                <div class="h-[56px] md:border-b-[#0021475f] text-center py-2 text-[#002147] text-xl font-bold">
+                    <h1>Important Notice for Honours</h1>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto text-black flex-grow">
+                    <table class="table table-sm border border-[#0021475f] w-full">
+                        <thead>
+                            <tr class="text-white bg-[#002147]">
+                                <th>No.</th>
+                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Download</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if page_obj %}
+                                {% for notice in page_obj %}
+                                    <tr>
+                                        <th>{{ forloop.counter0|add:start_index|add:"1" }}</th>
+                                        <td>{{ notice.notice_title }}</td>
+                                        <td>
+                                            {% if notice.date %}
+                                                {{ notice.date|date:"d/m/Y" }}
+                                            {% else %}
+                                                <span class="text-gray-400">N/A</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="flex justify-center items-center">
+                                            {% if notice.notice_file %}
+                                                <a href="{{ notice.notice_file.url }}" download
+                                                class="cursor-pointer btn p-0 py-0 btn-block btn-sm rounded-none hover:bg-[#002147dc] hover:text-white text-gray-600 bg-white text-xs flex items-center px-1">
+                                                    Download <i class="fa-solid fa-download ml-1"></i>
+                                                </a>
+                                            {% else %}
+                                                <span class="text-gray-500 text-xs">No File</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" class="text-center text-gray-500">No notices available</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination (always at bottom) -->
+                <div class="flex justify-center items-center gap-4 py-4 mt-auto border-t border-[#0021475f]">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}" class="text-blue-600 hover:underline">Previous</a>
+                    {% endif %}
+
+                    <span class="text-gray-700">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="text-blue-600 hover:underline">Next</a>
+                    {% endif %}
+                </div>
+            </aside>

@@ -19,9 +19,12 @@ from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
 from . import views
+from UserProfiles.views import notice_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
-    path('user/', include('UserProfiles.urls')),
+    # path('', views.home, name='home'),
+    path('', notice_list, name='home'),
+    path('contact/', views.contact, name='contact'),
+    path('accounts/', include('UserProfiles.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

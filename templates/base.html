@@ -1,24 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets-p/logo/logo.png" type="image/x-icon">
+    {% if site_settings.favicon %}
+    <link rel="shortcut icon" href="{{ site_settings.favicon.url }}" type="image/x-icon">
+    {% else %}
+    <link rel="shortcut icon" href="{% static 'assets-p/logo/logo.png' %}" type="image/x-icon">
+    {% endif %}
+
+
+
+    
     <title>Pochamaria Degree College</title>
 
-    <!-- daisy ui -->
+    <!-- DaisyUI + Tailwind via CDN -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- custom css -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+    <!-- Your compiled SCSS output -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <style>
-        @import "tailwindcss";
-
         .updateNewsClip {
             clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
             background-color: #afdbaa;
@@ -40,149 +47,14 @@
     </style>
 </head>
 
+
 <body class="w-full bg-gray-200 min-h-screen">
     <!-- navbar -->
-    <header class="max-w-[1200px] mx-auto">
-        <nav class="bg-[#002147] flex justify-between items-center rounded-b-3xl text-white max-h-[140px] p-5 ">
-            <!-- logo part -->
-             {% if site_settings %}
-                <!-- <img src="{{ site_settings.logo.url }}" alt="Logo">
-                <h1>{{ site_settings.institution_name }}</h1> -->
+    {% block navbar %}
+    {% include 'navbar.html' %}
+    {% endblock navbar %}
 
-                <div class="lg:px-5 md:px-2  flex ">
-                <a href="/index.html" class="flex justify-center items-center">
-                    <img class="md:w-36 sm:w-24 w-16 min-w-10 lg:px-5 sm:px-2" src="{{ site_settings.logo.url }}"
-                        alt="Pochamaria Degree College">
-                </a>
-                <div class="py-3 text-left flex justify-center items-start flex-col">
-                    <h1 class="text-xl md:text-2xl lg:text-4xl font-extrabold leading-tight">
-                        {{ site_settings.institution_name }} 
-                    </h1>
-                    <h2 class="text-xs md:text-base lg:text-xl font-bold leading-snug">
-                        Online Admission System
-                    </h2>
-                </div>
-
-                <!-- <p>Address: {{ site_settings.address }}</p>
-                <p>Phone: {{ site_settings.mobile_number }}</p>
-                <p>Email: {{ site_settings.email }}</p>
-                <p>Website: {{ site_settings.website }}</p> -->
-
-
-            </div>
-            {% else %}
-            <div class="lg:px-5 md:px-2  flex ">
-                <a href="/index.html" class="flex justify-center items-center">
-                    <img class="md:w-36 sm:w-24 w-16 min-w-10 lg:px-5 sm:px-2" src="{{ site_settings.logo.url }}"
-                        alt="Pochamaria Degree College">
-                </a>
-                <div class="py-3 text-left flex justify-center items-start flex-col">
-                    <h1 class="text-xl md:text-2xl lg:text-4xl font-extrabold leading-tight">
-                        Pochamaria Degree College
-                    </h1>
-                    <h2 class="text-xs md:text-base lg:text-xl font-bold leading-snug">
-                        Online Admission System
-                    </h2>
-                </div>
-            {% endif %}
-
-            
-
-            <!-- large device nav item -->
-            <div class=" text-white lg:gap-2 flex  justify-center lg:p-2 ">
-                <!--  nav item-1 -->
-
-                <div class="relative flex justify-end">
-                    <a href="https://app.pochamariacollege.edu.bd/"
-                        class="btn flex flex-nowrap text-nowrap text-center rounded-md bg-[#347C17] text-white btn-xs md:btn-sm  text-xs lg:text-sm md:font-semibold   shadow-xs  ring-inset hover:bg-[#347c17a7]">
-                        <i class="fa-solid fa-lock sm:flex hidden"></i><span>Admin Panel</span>
-                    </a>
-                </div>
-
-            </div>
-
-
-        </nav>
-        <nav class="rounded-xl bg-[#347C17] p-2 flex justify-center md:text-base text-sm items-center flex-wrap gap-2">
-            <a href="index.html" class="px-2 text-sm py-1 border-none text-white hover:text-green-200 bg-transparent"><i
-                    class="fas fa-home"></i> Home
-            </a>
-            <!-- drop down start -->
-            <div class="relative inline-block text-left">
-                <details class="dropdown">
-                    <summary
-                        class="px-2 text-sm py-1 shadow-none hover:text-green-200 btn btn-sm bg-[#347C17] border-none hover:bg-[#347C17] text-white">
-                        <i class="fa-solid fa-rectangle-list mr-2"></i> Admission Form Hsc
-                    </summary>
-                    <ul class="menu dropdown-content bg-white text-black rounded z-10 w-32 shadow-sm">
-                        <li class="text-center text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">
-                            <a href="https://cms.pochamariacollege.edu.bd/form/science.php"
-                                class="block px-4 py-2 hover:text-white hover:bg-[#347C17]">
-                                Science
-                            </a>
-                        </li>
-                        <li class="text-center text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">
-                            <a href="https://cms.pochamariacollege.edu.bd/form/humanities.php"
-                                class="block px-4 py-2 hover:text-white hover:bg-[#347C17]">
-                                Humanities
-                            </a>
-                        </li>
-                        <li class="text-center text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">
-                            <a href="https://cms.pochamariacollege.edu.bd/form/business.php"
-                                class="block px-4 py-2 hover:text-white hover:bg-[#347C17]">
-                                Business
-                            </a>
-                        </li>
-                    </ul>
-                </details>
-            </div>
-            <div class="relative inline-block text-left">
-                <details class="dropdown">
-                    <summary
-                        class="px-2 text-sm py-1 shadow-none hover:text-green-200 btn btn-sm bg-[#347C17] border-none hover:bg-[#347C17] text-white">
-                        <i class="fa-solid fa-rectangle-list mr-2"></i> Admission Form Degree
-                    </summary>
-                    <ul class="menu dropdown-content bg-white text-black rounded z-10 w-32 shadow-sm">
-                        <li class="text-center text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">
-                            <a href="https://cms.pochamariacollege.edu.bd/degree/ba"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">BA</a>
-
-                        </li>
-                        <li class="text-center text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">
-                            <a href="https://cms.pochamariacollege.edu.bd/degree/bss"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">BBS</a>
-
-                        </li>
-                        <li class="text-center text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">
-                            <a href="https://cms.pochamariacollege.edu.bd/degree/bbs"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">BSS</a>
-
-                        </li>
-                        <li class="text-center text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">
-                            <a href="https://cms.pochamariacollege.edu.bd/degree/bsc"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#347C17] hover:text-white">BSC</a>
-
-                        </li>
-                    </ul>
-                </details>
-            </div>
-
-
-            <!-- drop down end -->
-
-            <a href="#" class="px-2 text-sm py-1 border-none text-white hover:text-green-200 bg-transparent">
-                <i class="fas fa-credit-card"></i> All Payments
-            </a>
-            <a href="#" class="px-2 text-sm py-1 border-none text-white hover:text-green-200 bg-transparent">
-                <i class="fa-solid fa-square-poll-horizontal"></i> Result
-            </a>
-
-            <a href="contact.html" class="px-2 text-sm py-1 border-none text-white hover:text-green-200 bg-transparent">
-                <i class="fas fa-address-book"></i> Helpline
-            </a>
-        </nav>
-
-    </header>
+    
     <!-- main body -->
     <main class="bg-white rounded-xl max-w-[1200px] mx-auto pl-2 pr-2 pb-2 min-h-[calc(100vh-236px)]">
 
@@ -330,67 +202,24 @@
 
 
             <!-- right side -->
-            <aside class="space-y-1 bg-[#00214715]">
-                <div
-                    class="h-[56px] md:border-b-[#0021475f] text-center py-2 text-[#002147] text-xl text-wrap font-bold">
-                    <h1>Important Notice for Honours</h1>
-                </div>
-                <div class="overflow-x-auto text-black">
-                    <table class="table table-sm border border-[#0021475f]">
-                        <!-- head -->
-                        <thead>
-                            <tr class="text-white bg-[#002147]">
-                                <th>No.</th>
-                                <th>Titile</th>
-                                <th>Date</th>
-                                <th>Download</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- row 1 -->
-                            <tr>
-                                <th>1</th>
-                                <td>Notice-1</td>
-                                <td>23/02/2025</td>
-                                <td class="flex justify-center items-center ">
-                                    <div
-                                        class="cursor-pointer btn p-0 py-0 btn-block btn-sm rounded-none hover:bg-[#002147dc] hover:text-white text-gray-600 bg-white text-xs flex flex-nowrap justify-center items-center px-1">
-                                        Download <i class="fa-solid fa-download"></i></div>
-                                </td>
-                            </tr>
-                            <!-- row 2 -->
-                            <tr>
-                                <th>1</th>
-                                <td>Notice-2</td>
-                                <td>23/02/2025</td>
-                                <td class="flex justify-center items-center ">
-                                    <div
-                                        class="cursor-pointer btn p-0 py-0 btn-block btn-sm rounded-none hover:bg-[#002147dc] hover:text-white text-gray-600 bg-white text-xs flex flex-nowrap justify-center items-center px-1">
-                                        Download <i class="fa-solid fa-download"></i></div>
-                                </td>
-                            </tr>
-                            <!-- row 3 -->
-                            <tr>
-                                <th>1</th>
-                                <td>Notice-3</td>
-                                <td>23/02/2025</td>
-                                <td class="flex justify-center items-center ">
-                                    <div
-                                        class="cursor-pointer btn p-0 py-0 btn-block btn-sm rounded-none hover:bg-[#002147dc] hover:text-white text-gray-600 bg-white text-xs flex flex-nowrap justify-center items-center px-1">
-                                        Download <i class="fa-solid fa-download"></i></div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </aside>
+            
+            {% include 'notice.html' %}
+            
+            
+        
+
         </div>
+
     </main>
     <footer
         class="flex justify-center items-center bg-[#002147] text-center text-white max-w-[1200px] mx-auto rounded-t-xl p-4">
-
+        {% if site_settings.footer %}
+        <div class="text-center">Copyright © 2025 {{ site_settings.footer }}. Design & Develop by <a href="https://jbdit.com.bd" target="_blank" rel="no-referrer" class="text-green-600 hover:text-red-500 delay-300 duration-300">JBD IT</a>
+            </div>
+        {% else %}
         <div class="text-center">Copyright © 2025 Pochamaria Degree College. Design & Develop by <a href="https://jbdit.com.bd" target="_blank" rel="no-referrer" class="text-green-600 hover:text-red-500 delay-300 duration-300">JBD IT</a>
             </div>
+        {% endif %}
 
     </footer>
     <!-- tailwind script -->
