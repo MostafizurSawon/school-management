@@ -1,17 +1,11 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en" x-data="{ open: true }" class="h-full">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    {% if site_settings.favicon %}
-    <link rel="shortcut icon" href="{{ site_settings.favicon.url }}" type="image/x-icon">
-    {% else %}
-    <link rel="shortcut icon" href="{% static 'assets-p/logo/logo.png' %}" type="image/x-icon">
-    {% endif %}
-    <!-- <link rel="shortcut icon" href="./images/logo/favicon.png" type="image/x-icon"> -->
+    <title>College Management || General Setting</title>
+    <link rel="shortcut icon" href="./images/logo/favicon.png" type="image/x-icon">
     <!-- tailwind + daisy ui cdn -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -36,11 +30,11 @@
         </div>
 
         <!-- Menu -->
-        <nav class="px-4 relative bg-gray-800 overflow-y-auto h-[calc(100vh-120px)] ">
+        <nav class="px-4 relative bg-gray-800 overflow-y-auto h-[calc(100vh-120px)]">
             <!-- menu item 1-->
-            <div x-data="{ open: false }" class="transition-all duration-300 mt-2">
+            <div x-data="{ open: false }" class="transition-all duration-300">
                 <a href="index.html" @click="open = !open"
-                    class="flex items-center w-full px-3 py-2 text-left hover:bg-gray-600 bg-gray-700 rounded px-2 transition-all duration-500">
+                    class="flex items-center w-full px-3 py-2 text-left hover:bg-gray-700 rounded px-2 transition-all duration-500">
                     <h1 class="flex justify-between items-center gap-3 "><i class="fas fa-tachometer-alt"></i
                             <span>Dashboard</span></h1>
 
@@ -90,11 +84,14 @@
                     </svg>
                 </button>
                 <div x-show="open" class="pl-4 space-y-1">
-                    <a href="{% url 'general_settings' %}" class="flex justify-start items-center flex-1 gap-3 p-2"><i
+                    <a href="general__setting.html"
+                        class="flex  hover:bg-gray-700 rounded justify-start items-center flex-1 gap-3 p-2"><i
                             class="fa-solid fa-sliders"></i> <span>General Setting</span></a>
-                    <a href="subject__setting.html" class="flex justify-start items-center flex-1 gap-3 p-2"><i
+                    <a href="subject__setting.html"
+                        class="flex justify-start hover:bg-gray-700 rounded  items-center flex-1 gap-3 p-2"><i
                             class="fa-solid fa-sliders"></i> <span>Subject Setting</span></a>
-                    <a href="portal__notice.html" class="flex justify-start items-center flex-1 gap-3 p-2"><i
+                    <a href="portal__notice.html"
+                        class="flex justify-start  hover:bg-gray-600 bg-gray-700 rounded items-center flex-1 gap-3 p-2"><i
                             class="fa-solid fa-sliders"></i> <span>Portal Notice</span></a>
 
                 </div>
@@ -118,17 +115,10 @@
         <div class="navbar bg-base-100 shadow-sm col-span-5">
 
             <div class="navbar-start">
-              {% if site_settings.logo %}
-                <a href="/index.html" class="flex justify-center items-center">
-                    <img class="md:w-36 sm:w-24 w-16 min-w-10 lg:px-5 sm:px-2" src="{{ site_settings.logo.url }}"
-                        alt="Pochamaria Degree College">
-                </a>
-                <!-- <a class="btn btn-ghost text-xl">
+                <a class="btn btn-ghost text-xl">
                     <img src="images/logo/logo-light-text.png" alt="JBD Academy" srcset="JBD Academy"
                         class="w-auto max-h-13">
-                </a> -->
-                {% endif %}
-                
+                </a>
             </div>
             <div class="navbar-end">
                 <div class="dropdown dropdown-end">
@@ -155,30 +145,57 @@
 
 
         </div>
-        <div class="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-4 mt-4  p-4 rounded-lg bg-white shadow">
-            <div class="flex flex-col justify-center items-center bg-white hover:shadow-md transition-all duration-300  p-4 rounded-lg shadow">
-                 <div class="text-2xl text-blue-800 font-bold">123</div>
-                <div>
-                    <h1 class="text-2xl font-bold flex justify-start items-center text-[#424B59] gap-4"><i class="fa-solid fa-user"></i><span>Science</span></h1>
-                </div>
-               
-            </div>
-            <div class="flex flex-col justify-center items-center bg-white hover:shadow-md transition-all duration-300  p-4 rounded-lg shadow">
-                 <div class="text-2xl text-blue-800 font-bold">123</div>
-                <div>
-                    <h1 class="text-2xl font-bold flex justify-start items-center text-[#424B59] gap-4"><i class="fa-solid fa-user"></i><span>Arts</span></h1>
-                </div>
-               
-            </div>
-            <div class="flex flex-col justify-center items-center bg-white hover:shadow-md transition-all duration-300  p-4 rounded-lg shadow">
-                 <div class="text-2xl text-blue-800 font-bold">123</div>
-                <div>
-                    <h1 class="text-2xl font-bold flex justify-start items-center text-[#424B59] gap-4"><i class="fa-solid fa-user"></i><span>Commerce</span></h1>
-                </div>
-               
-            </div>
-           
+        <!-- content -->
+        <div class="mt-4 overflow-y-auto h-[calc(100vh-120px)]">
+            <form class="w-full ">
+                <div class="divider my-8 text-xl font-bold text-blue-500">Notice Management</div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="notice_title">
+                            Notice title
+                        </label>
+                        <input
+                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            id="notice_title" name="notice_title" type="text" placeholder="Enter notice title">
 
+                    </div>
+                    <div class="w-full md:w-1/2 px-3">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="grid-last-name">
+                            Address
+                        </label>
+
+                        <input type="date" class="input" />
+                    </div>
+                </div>
+            
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                            for="notice_file">
+                           Notice File
+                        </label>
+                         <input id="notice_file" type="file" name="notice_file" class="file-input "
+                            title="Upload Notice file" placeholder="Choose notice pdf" />
+
+                    </div>
+                  
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <button type="reset" title="Cancel all change"
+                        class="btn btn-active btn-warning text-white ml-4 bg-[#F74343] hover:bg-[#F36642]">Cancel</button>
+                    <button type="submit" title="save changes"
+                        class="btn btn-active bg-blue-500 text-white hover:bg-blue-400 transition-all duration-300">Save</button>
+                </div>
+            </form>
+            <footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
+                <aside>
+                    <p>Copyright © 2025 JBD Academy & design and develop by <a
+                            class="text-[#14a800] hover:text-red-500 transition-all duration-300 cursor-pointer"
+                            href="http://https://jbdit.com.bd" target="_blank" rel="noopener noreferrer">JBD IT</a></p>
+                </aside>
+            </footer>
         </div>
     </main>
 

@@ -95,8 +95,8 @@ def site_settings_view(request):
             return redirect('profile')
     else:
         form = SiteSettingsForm(instance=instance)
-
-    return render(request, 'profile.html', {'form': form})
+ 
+    return render(request, 'general_setting.html', {'form': form})
 
 
 def notice_list(request):

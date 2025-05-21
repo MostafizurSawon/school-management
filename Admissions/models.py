@@ -12,9 +12,12 @@ class HscSession(models.Model):
 class HscScienceSubjects(models.Model):
     subject_name = models.CharField(max_length=30)
     subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    is_main = models.BooleanField(default=False)
+    fourth = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.subject_name} ({self.subject_code})"
+        return f"{self.subject_name} ({self.is_active})"
 
 class HscAdmissionScience(models.Model):
     ssc_roll = models.IntegerField(unique=True)

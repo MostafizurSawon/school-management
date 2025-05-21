@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #002147;
+    }
+
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      text-align: center;
+      border: 1px solid #c3e6cb;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="file"],
+    input[type="date"],
+    textarea {
+      padding: 8px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #002147;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #003366;
+    }
+
+    .user-info {
+      background-color: #fff;
+      padding: 20px;
+      max-width: 500px;
+      margin: 40px auto;
+      text-align: center;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-info p {
+      margin: 8px 0;
+    }
+
+    .section-divider {
+      margin-top: 60px;
+      border-top: 2px dashed #ccc;
+      padding-top: 40px;
+    }
+    .btn-bar {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .btn-bar a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .btn-primary {
+            background-color: #0ea5e9;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0284c7;
+        }
+  </style>
+  
+</head>
+<body>
+  <br>
+  <div class="btn-bar">
+    <a class="btn-primary" href="{% url 'home' %}">Home</a>
+    <a class="btn-primary" href="{% url 'hsc_science_admission' %}">Science Admission</a>
+    <a class="btn-primary" href="{% url 'science_students' %}">Science Student Infos</a>
+    <a class="btn-primary" href="{% url 'user_logout' %}">Log Out</a>
+  </div>
+
+{% if request.user.is_superuser %}
+  <div class="container">
+    <div class="alert-success">
+      <h1>Welcome to the Admin Panel!</h1>
+    </div>
+
+    <h2>Institution Settings</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div>
+  <label for="favicon">Favicon</label><br>
+  {% if site_settings_form.instance.favicon %}
+    <img src="{{ site_settings_form.instance.favicon.url }}" alt="Current Favicon" height="32" style="margin-bottom: 10px;"><br>
+  {% endif %}
+  <input type="file" name="favicon" id="favicon">
+</div>
+
+<div>
+  <label for="logo">Logo</label><br>
+  {% if site_settings_form.instance.logo %}
+    <img src="{{ site_settings_form.instance.logo.url }}" alt="Current Logo" height="60" style="margin-bottom: 10px;"><br>
+  {% endif %}
+  <input type="file" name="logo" id="logo">
+</div>
+
+      <div>
+        <label for="institution_name">Institution Name</label>
+        <input type="text" name="institution_name" id="institution_name" value="{{ site_settings_form.instance.institution_name }}">
+      </div>
+
+      <div>
+        <label for="institution_description">Institution Description</label>
+        <input type="text" name="institution_description" id="institution_description" value="{{ site_settings_form.instance.institution_description }}">
+      </div>
+
+      <div>
+        <label for="footer">Footer Text</label>
+        <input type="text" name="footer" id="footer" value="{{ site_settings_form.instance.footer }}">
+      </div>
+
+      <div>
+        <label for="address">Address</label>
+        <textarea name="address" id="address">{{ site_settings_form.instance.address }}</textarea>
+      </div>
+
+      <div>
+        <label for="mobile_number">Mobile Number</label>
+        <input type="text" name="mobile_number" id="mobile_number" value="{{ site_settings_form.instance.mobile_number }}">
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="{{ site_settings_form.instance.email }}">
+      </div>
+
+      <div>
+        <label for="website">Website</label>
+        <input type="url" name="website" id="website" value="{{ site_settings_form.instance.website }}">
+      </div>
+
+      <button type="submit" name="save_settings">Save Settings</button>
+    </form>
+  </div>
+
+  <div class="container section-divider">
+    <h2>Add New Notice</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <div>
+        <label for="notice_title">Notice Title</label>
+        <input type="text" name="notice_title" id="notice_title" required>
+      </div>
+
+      <div>
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+      </div>
+
+      <div>
+        <label for="notice_description">Description</label>
+        <textarea name="notice_description" id="notice_description" rows="4"></textarea>
+      </div>
+
+      <div>
+        <label for="notice_file">Upload File</label>
+        <input type="file" name="notice_file" id="notice_file">
+      </div>
+
+      <button type="submit" name="add_notice">Submit Notice</button>
+    </form>
+  </div>
+
+{% else %}
+  <div class="user-info">
+    <h2>{{ user }}'s Personal Information</h2>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>First Name:</strong> {{ user.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Last Logged In:</strong> {{ user.last_login }}</p>
+    <p><strong>Joined:</strong> {{ user.date_joined }}</p>
+  </div>
+{% endif %}
+
+</body>
+</html>
