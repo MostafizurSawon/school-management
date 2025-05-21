@@ -97,15 +97,39 @@
       border-top: 2px dashed #ccc;
       padding-top: 40px;
     }
+    .btn-bar {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .btn-bar a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .btn-primary {
+            background-color: #0ea5e9;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0284c7;
+        }
   </style>
+  
 </head>
 <body>
   <br>
-  <center>
-    <a href="{% url 'home' %}">Home</a>
-    <a href="{% url 'user_logout' %}">Log Out</a>
-  </center>
-  <br>
+  <div class="btn-bar">
+    <a class="btn-primary" href="{% url 'home' %}">Home</a>
+    <a class="btn-primary" href="{% url 'hsc_science_admission' %}">Science Admission</a>
+    <a class="btn-primary" href="{% url 'science_students' %}">Science Student Infos</a>
+    <a class="btn-primary" href="{% url 'user_logout' %}">Log Out</a>
+  </div>
 
 {% if request.user.is_superuser %}
   <div class="container">

@@ -54,8 +54,7 @@
     {% include 'navbar.html' %}
     {% endblock navbar %}
 
-    
-    <!-- main body -->
+    {% block main %}
     <main class="bg-white rounded-xl max-w-[1200px] mx-auto pl-2 pr-2 pb-2 min-h-[calc(100vh-236px)]">
 
         <!-- notice updates -->
@@ -211,6 +210,11 @@
         </div>
 
     </main>
+    {% endblock main %}
+    <!-- main body -->
+    
+
+    
     <footer
         class="flex justify-center items-center bg-[#002147] text-center text-white max-w-[1200px] mx-auto rounded-t-xl p-4">
         {% if site_settings.footer %}

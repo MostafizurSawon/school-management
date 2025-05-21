@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'formtools',
     'UserProfiles',
     'Admissions',
+    'StudentsInfos',
 ]
 
 MIDDLEWARE = [

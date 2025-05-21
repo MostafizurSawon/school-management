@@ -1,0 +1,319 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Science Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .btn-bar {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-bar a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #0ea5e9;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0284c7;
+        }
+
+        .btn-danger {
+            background-color: #f87171;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #ef4444;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 50px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #e5e7eb;
+        }
+
+        .button {
+            padding: 4px 8px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            margin-right: 5px;
+            border-radius: 3px;
+        }
+
+        .delete {
+            background: #f44336;
+        }
+
+        img {
+            width: 60px;
+            height: auto;
+        }
+
+        td[colspan] {
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="btn-bar">
+    <a href="{% url 'home' %}" class="btn-primary">Home</a>
+    <a href="{% url 'user_logout' %}" class="btn-danger">Log Out</a>
+</div>
+
+<h1>HSC Science Admission - All Students Info</h1>
+
+<!-- 1. Personal Information -->
+<h2>1. Personal Information</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>SSC Roll</th>
+            <th>Class Roll</th>
+            <th>Merit Position</th>
+            <th>Mobile</th>
+            <th>Blood Group</th>
+            <th>Birth Certificate No</th>
+            <th>Birthdate</th>
+            <th>Marital Status</th>
+            <th>Gender</th>
+            <th>Nationality</th>
+            <th>Religion</th>
+            <th>Photo</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.ssc_roll }}</td>
+            <td>{{ student.class_roll }}</td>
+            <td>{{ student.merit_position }}</td>
+            <td>{{ student.mobile }}</td>
+            <td>{{ student.blood_group }}</td>
+            <td>{{ student.birth_certificate_no }}</td>
+            <td>{{ student.birthdate }}</td>
+            <td>{{ student.marital_status }}</td>
+            <td>{{ student.gender }}</td>
+            <td>{{ student.nationality }}</td>
+            <td>{{ student.religion }}</td>
+            <td><img src="{{ student.photo.url }}" alt="Photo"></td>
+            <td>
+                <a href="{% url 'edit_student' student.id %}" class="button">Edit</a>
+                <a href="{% url 'delete_student' student.id %}" class="button delete">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="14">No students found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- 2. Parent Information -->
+<h2>2. Parent Information</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Father's Name</th>
+            <th>Father's NID</th>
+            <th>Father's DOB</th>
+            <th>Father's Mobile</th>
+            <th>Father's Occupation</th>
+            <th>Father's Income</th>
+            <th>Mother's Name</th>
+            <th>Mother's NID</th>
+            <th>Mother's DOB</th>
+            <th>Mother's Mobile</th>
+            <th>Mother's Occupation</th>
+            <th>Mother's Income</th>
+            <th>Guardian</th>
+            <th>Guardian Name</th>
+            <th>Guardian NID</th>
+            <th>Guardian DOB</th>
+            <th>Guardian Mobile</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.parent_info.fathers_name_english }}</td>
+            <td>{{ student.parent_info.fathers_nid }}</td>
+            <td>{{ student.parent_info.fathers_date_of_birth }}</td>
+            <td>{{ student.parent_info.fathers_mobile }}</td>
+            <td>{{ student.parent_info.father_occupation }}</td>
+            <td>{{ student.parent_info.fathers_monthly_income }}</td>
+            <td>{{ student.parent_info.mother_name_english }}</td>
+            <td>{{ student.parent_info.mothers_nid }}</td>
+            <td>{{ student.parent_info.mothers_date_of_birth }}</td>
+            <td>{{ student.parent_info.mothers_mobile }}</td>
+            <td>{{ student.parent_info.mother_occupation }}</td>
+            <td>{{ student.parent_info.mothers_monthly_income }}</td>
+            <td>{{ student.parent_info.guardian }}</td>
+            <td>{{ student.parent_info.guardian_name_english }}</td>
+            <td>{{ student.parent_info.guardian_nid }}</td>
+            <td>{{ student.parent_info.guardian_date_of_birth }}</td>
+            <td>{{ student.parent_info.guardian_mobile }}
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="17">No parent info found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- 3. Address Information -->
+<h2>3. Address Information</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Ward No</th>
+            <th>Post Office</th>
+            <th>Police Station</th>
+            <th>District</th>
+            <th>Postal Code</th>
+            <th>Permanent Same?</th>
+            <th>Permanent Ward No</th>
+            <th>Permanent Post Office</th>
+            <th>Permanent Police Station</th>
+            <th>Permanent District</th>
+            <th>Permanent Postal Code</th>
+            <th>Freedom Quota</th>
+            <th>Community Quota</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.address.wardNo }}</td>
+            <td>{{ student.address.postOffice }}</td>
+            <td>{{ student.address.policeStation }}</td>
+            <td>{{ student.address.district }}</td>
+            <td>{{ student.address.postal_code }}</td>
+            <td>{{ student.address.permanent_address_same }}</td>
+            <td>{{ student.address.permanent_wardNo }}</td>
+            <td>{{ student.address.permanent_postOffice }}</td>
+            <td>{{ student.address.permanent_policeStation }}</td>
+            <td>{{ student.address.permanent_district }}</td>
+            <td>{{ student.address.permanent_postal_code }}</td>
+            <td>{{ student.address.qouta_freedom }}</td>
+            <td>{{ student.address.qouta_community }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="13">No address info found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- 4. Academic Information -->
+<h2>4. Academic Information</h2>
+<table>
+    <thead>
+        <tr>
+            <th>SSC Board</th>
+            <th>SSC Year</th>
+            <th>SSC Roll</th>
+            <th>SSC Reg</th>
+            <th>SSC Session</th>
+            <th>SSC GPA</th>
+            <th>Institution</th>
+            <th>Bangla</th>
+            <th>English</th>
+            <th>ICT</th>
+            <th>Physics</th>
+            <th>Chemistry</th>
+            <th>Main Subject</th>
+            <th>Fourth Subject</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.academic_info.ssc_board }}</td>
+            <td>{{ student.academic_info.ssc_year }}</td>
+            <td>{{ student.academic_info.sscRoll }}</td>
+            <td>{{ student.academic_info.sscReg }}</td>
+            <td>{{ student.academic_info.sscSession }}</td>
+            <td>{{ student.academic_info.sscGpa }}</td>
+            <td>{{ student.academic_info.sscInstitution }}</td>
+            <td>{{ student.academic_info.compulsory_bangla }}</td>
+            <td>{{ student.academic_info.compulsory_english }}</td>
+            <td>{{ student.academic_info.compulsory_ict }}</td>
+            <td>{{ student.academic_info.elective_physics }}</td>
+            <td>{{ student.academic_info.elective_chemistry }}</td>
+            <td>{{ student.academic_info.main_subject }}</td>
+            <td>{{ student.academic_info.fourth_subject }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="14">No academic info found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- 5. Payment Information -->
+<h2>5. Payment Information</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Amount</th>
+            <th>Transaction ID</th>
+            <th>Status</th>
+            <th>Payment Date</th>
+            <th>Receipt No</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.payment.method }}</td>
+            <td>{{ student.payment.amount }}</td>
+            <td>{{ student.payment.transaction_id }}</td>
+            <td>{{ student.payment.status }}</td>
+            <td>{{ student.payment.payment_date }}</td>
+            <td>{{ student.payment.receipt_number }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6">No payment info found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

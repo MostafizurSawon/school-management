@@ -26,6 +26,7 @@
     </style>
 </head>
 <body>
+    <a href="{% url 'home' %}" class="btn-primary">Home</a>
     <h2>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
