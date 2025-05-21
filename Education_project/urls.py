@@ -27,4 +27,5 @@ urlpatterns = [
     path('', notice_list, name='home'),
     path('contact/', views.contact, name='contact'),
     path('accounts/', include('UserProfiles.urls')),
+    path('admissions/', include('Admissions.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

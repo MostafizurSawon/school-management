@@ -15,20 +15,6 @@ class HscScienceSubjects(models.Model):
 
     def __str__(self):
         return f"{self.subject_name} ({self.subject_code})"
-    
-class HscArtsSubjects(models.Model):
-    subject_name = models.CharField(max_length=30)
-    subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.subject_name} ({self.subject_code})"
-    
-class HscCommerceSubjects(models.Model):
-    subject_name = models.CharField(max_length=30)
-    subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.subject_name} ({self.subject_code})"
 
 class HscAdmissionScience(models.Model):
     ssc_roll = models.IntegerField(unique=True)
@@ -67,10 +53,149 @@ class HscAdmissionScience(models.Model):
         ('Buddhist', 'Buddhist'),
         ('Other', 'Other'),
     ])
-    photo = models.ImageField(upload_to='hsc_science/')
+    photo = models.ImageField(upload_to='hsc-science/')
 
     def __str__(self):
         return f"Name: {self.name} | Group: Science | Class Roll: {self.class_roll} | Session: {self.hsc_session.session}"
+
+
+class ParentInfo(models.Model):
+    student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='parent_info')
+    fathers_name_english = models.CharField(max_length=100)
+    fathers_nid = models.CharField(max_length=17, unique=True)
+    fathers_date_of_birth = models.DateField()
+    fathers_mobile = models.CharField(max_length=11, validators=[numeric_validator])
+    father_occupation = models.CharField(max_length=50)
+    fathers_monthly_income = models.IntegerField()
+    mother_name_english = models.CharField(max_length=100)
+    mothers_nid = models.CharField(max_length=17, unique=True)
+    mothers_date_of_birth = models.DateField()
+    mothers_mobile = models.CharField(max_length=11, validators=[numeric_validator])
+    mother_occupation = models.CharField(max_length=50, blank=True)
+    mothers_monthly_income = models.IntegerField()
+    guardian = models.CharField(max_length=10, choices=[
+        ('Father', 'Father'),
+        ('Mother', 'Mother'),
+        ('Other', 'Other'),
+    ])
+    
+    guardian_name_english = models.CharField(max_length=100, null=True, blank=True)
+    guardian_date_of_birth = models.DateField(null=True, blank=True)
+    guardian_mobile = models.CharField(max_length=11, validators=[numeric_validator], null=True, blank=True)
+    guardian_nid = models.CharField(max_length=17, unique=True, null=True, blank=True)
+
+    def __str__(self):
+        return f"Parents of {self.student.name}"
+
+class Address(models.Model):
+    student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='address')
+    wardNo = models.IntegerField(null=True, blank=True)
+    postOffice = models.CharField(max_length=50, null=True, blank=True)
+    policeStation = models.CharField(max_length=50, null=True, blank=True)
+    district = models.CharField(max_length=50, null=True, blank=True)
+    postal_code = models.IntegerField()
+    permanent_address_same = models.BooleanField(default=False)
+    permanent_wardNo = models.IntegerField(null=True, blank=True)
+    permanent_postOffice = models.CharField(max_length=50, null=True, blank=True)
+    permanent_policeStation = models.CharField(max_length=50, null=True, blank=True)
+    permanent_district = models.CharField(max_length=50, null=True, blank=True)
+    permanent_postal_code = models.IntegerField(null=True, blank=True)
+    
+    qouta_freedom = models.BooleanField(default=False)
+    qouta_community = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Address of {self.student.name}"
+
+class AcademicInformation(models.Model):
+    student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='academic_info')
+    ssc_board = models.CharField(max_length=20,choices=[
+        ('Dhaka', 'Dhaka'),
+        ('Rajshahi', 'Rajshahi'),
+        ('Comilla', 'Comilla'),
+        ('Chittagong', 'Chittagong'),
+        ('Barisal', 'Barisal'),
+        ('Dinajpur', 'Dinajpur'),
+        ('Jessore', 'Jessore'),
+        ('Mymensingh', 'Mymensingh'),
+        ('Khulna', 'Khulna'),
+        ('Sylhet', 'Sylhet'),
+        ('Madrasah', 'Madrasah'),
+        ('Technical', 'Technical'),
+        ('Others', 'Others'),
+    ])
+    ssc_year = models.CharField(max_length=4, choices=[
+        ('2020', '2020'),
+        ('2021', '2021'),
+        ('2022', '2022'),
+        ('2023', '2023'),
+        ('2024', '2024'),
+        ('2025', '2025'),
+        ('2026', '2026'),
+        ('2027', '2027'),
+        ('2028', '2028'),
+        ('2029', '2029'),
+    ])
+    sscInstitution = models.CharField(max_length=100, null=True, blank=True)
+    sscRoll = models.IntegerField(null=True, blank=True)
+    sscReg = models.IntegerField(null=True, blank=True)
+    sscSession = models.IntegerField(null=True, blank=True)
+    sscGpa = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
+    
+    compulsory_bangla = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='compulsory_bangla')
+    compulsory_english = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='compulsory_english')
+    compulsory_ict = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='compulsory_ict')
+
+    elective_physics = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='elective_physics')
+    elective_chemistry = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='elective_chemistry')
+
+    main_subject = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='main_subject')  # biology or higher math
+    fourth_subject = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='fourth_subject')
+
+    def __str__(self):
+        return f"Academic Info of {self.student.name}"
+
+    def __str__(self):
+        return f"Academic Info of {self.student.name}"
+
+class Payment(models.Model):
+    student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='payment')
+    method = models.CharField(max_length=20, choices=[
+        ('Cash', 'Cash'),
+        ('Bkash', 'Bkash'),
+        ('Nagad', 'Nagad'),
+        ('Rocket', 'Rocket'),
+    ], null=True, blank=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    transaction_id = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    payment_date = models.DateField()
+    status = models.CharField(max_length=20, choices=[
+        ('Pending', 'Pending'),
+        ('Paid', 'Paid'),
+        ('Failed', 'Failed'),
+    ], default='Pending')
+    receipt_number = models.CharField(max_length=50, unique=True, blank=True)
+
+    def __str__(self):
+        return f"Payment for {self.student.name} - {self.amount} BDT"
+
+
+
+
+class HscArtsSubjects(models.Model):
+    subject_name = models.CharField(max_length=30)
+    subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.subject_name} ({self.subject_code})"
+    
+class HscCommerceSubjects(models.Model):
+    subject_name = models.CharField(max_length=30)
+    subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.subject_name} ({self.subject_code})"
+    
 
 class HscAdmissionCommerce(models.Model):
     ssc_roll = models.IntegerField(unique=True)
@@ -109,7 +234,7 @@ class HscAdmissionCommerce(models.Model):
         ('Buddhist', 'Buddhist'),
         ('Other', 'Other'),
     ])
-    photo = models.ImageField(upload_to='hsc_commerce/')
+    photo = models.ImageField(upload_to='hsc-commerce/')
 
     def __str__(self):
         return f"Name: {self.name} | Group: Commerce | Class Roll: {self.class_roll} | Session: {self.hsc_session.session}"
@@ -151,76 +276,7 @@ class HscAdmissionArts(models.Model):
         ('Buddhist', 'Buddhist'),
         ('Other', 'Other'),
     ])
-    photo = models.ImageField(upload_to='hsc_arts/')
+    photo = models.ImageField(upload_to='hsc-arts/')
 
     def __str__(self):
         return f"Name: {self.name} | Group: Arts | Class Roll: {self.class_roll} | Session: {self.hsc_session.session}"
-
-class ParentInfo(models.Model):
-    student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='parent_info')
-    fathers_name_english = models.CharField(max_length=100)
-    fathers_nid = models.CharField(max_length=17, unique=True)
-    fathers_date_of_birth = models.DateField()
-    fathers_mobile = models.CharField(max_length=11, validators=[numeric_validator])
-    father_occupation = models.CharField(max_length=50)
-    fathers_monthly_income = models.IntegerField()
-    mother_name_english = models.CharField(max_length=100)
-    mothers_nid = models.CharField(max_length=17, unique=True)
-    mothers_date_of_birth = models.DateField()
-    mothers_mobile = models.CharField(max_length=11, validators=[numeric_validator])
-    mother_occupation = models.CharField(max_length=50, blank=True)
-    mothers_monthly_income = models.IntegerField()
-    guardian = models.CharField(max_length=10, choices=[
-        ('Father', 'Father'),
-        ('Mother', 'Mother'),
-        ('Other', 'Other'),
-    ])
-    
-    guardian_name_english = models.CharField(max_length=100, null=True, blank=True)
-    guardian_date_of_birth = models.DateField(null=True, blank=True)
-    guardian_mobile = models.CharField(max_length=11, validators=[numeric_validator], null=True, blank=True)
-    guardian_nid = models.CharField(max_length=17, unique=True, null=True, blank=True)
-
-    def __str__(self):
-        return f"Parents of {self.student.name}"
-
-
-class Address(models.Model):
-    student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='address')
-    wardNo = models.IntegerField()
-    postOffice = models.CharField(max_length=50)
-    policeStation = models.CharField(max_length=50)
-    district = models.CharField(max_length=50)
-    postal_code = models.CharField(max_length=10)
-
-    permanent_address = models.TextField()
-    present_address = models.TextField()
-    city = models.CharField(max_length=50)
-    country = models.CharField(max_length=50, default='Bangladesh')
-
-    def __str__(self):
-        return f"Address of {self.student.name}"
-
-class AcademicInformation(models.Model):
-    student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='academic_info')
-    ssc_board = models.CharField(max_length=50)
-    ssc_year = models.IntegerField()
-    ssc_gpa = models.FloatField()
-    ssc_certificate = models.FileField(upload_to='hsc_science/certificates/', blank=True)
-
-    def __str__(self):
-        return f"Academic Info of {self.student.name}"
-
-class Payment(models.Model):
-    student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='payment')
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_date = models.DateField()
-    status = models.CharField(max_length=20, choices=[
-        ('Pending', 'Pending'),
-        ('Paid', 'Paid'),
-        ('Failed', 'Failed'),
-    ], default='Pending')
-    receipt_number = models.CharField(max_length=50, unique=True, blank=True)
-
-    def __str__(self):
-        return f"Payment for {self.student.name} - {self.amount} BDT"

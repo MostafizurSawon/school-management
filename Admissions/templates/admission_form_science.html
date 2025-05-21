@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HSC Admission - Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        form { max-width: 600px; margin: auto; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-nav {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ wizard.management_form }}
+
+        {% for field in form %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+                <small>{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+                <div style="color:red;">{{ error }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        <div class="form-nav">
+            {% if wizard.steps.prev %}
+                <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}">Previous</button>
+            {% endif %}
+
+            {% if wizard.steps.next %}
+                <button type="submit">Next</button>
+            {% else %}
+                <button type="submit">Submit</button>
+            {% endif %}
+        </div>
+    </form>
+</body>
+</html>
