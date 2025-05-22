@@ -62,8 +62,16 @@
     <tr><th>Nationality</th><td>{{ student.nationality }}</td>
         <th>Religion</th><td>{{ student.religion }}</td></tr>
     <tr>
-        <th>Photo</th>
-        <td colspan="3"><img src="{{ student.photo.url }}" alt="Student Photo"></td>
+        <th>Photoo</th>
+        {% if photo_path %}
+        sadasd{{ photo_path }}
+            <td colspan="3"><img src="{{ student.photo.url }}" /></td>
+        {% else %}
+            <td colspan="3">No photo uploaded</td>
+        {% endif %}
+        <td colspan="3">No photo uploadedddd</td>
+
+
     </tr>
 </table>
 

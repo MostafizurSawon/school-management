@@ -86,6 +86,18 @@ WSGI_APPLICATION = 'Education_project.wsgi.application'
 
 
 # Database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME': 'jbditlabs_education',
+#         'USER': 'jbditlabs_sawon',
+#         'PASSWORD': '31012011@Sa',
+#         'HOST': 'https://host44.registrar-servers.com:2083',
+#         'Port': '3306'
+#     }
+# }
+
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
