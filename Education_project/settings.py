@@ -24,8 +24,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = [
+    'https://c.jbditlabs.xyz/',
     'https://school-management-ke9d.onrender.com',
-    'http://127.0.0.1:8000'
+    'http://127.0.0.1:8000',
 ]
 
 # Application definition
@@ -109,7 +110,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media files (uploads)
 MEDIA_URL = '/media/'

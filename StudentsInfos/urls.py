@@ -7,7 +7,7 @@ urlpatterns = [
     # Science Students
     path('edit-student/<int:pk>/', views.editStudent, name='edit_student'),
     path('delete-student/<int:pk>/', views.deleteStudent, name='delete_student'),
-
+    path('pdf/<int:pk>/', views.generate_student_pdf, name='student_pdf'),
 ]
 
 

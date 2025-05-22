@@ -22,101 +22,24 @@
 </head>
 
 <body class="flex h-full bg-gray-100">
-
+    
     <!-- Sidebar -->
-    <div :class="open ? 'w-64' : 'w-16'" class="bg-[#424B59] text-white transition-all duration-300">
-        <div class="flex items-center justify-between p-4">
-            <span class="text-xl font-bold" x-show="open">Menu</span>
-            <button title="Hamburger Menu" @click="open = !open" class="text-white focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
-        </div>
+    {% block sidebar %}
 
-        <!-- Menu -->
-        <nav class="px-4 relative bg-gray-800 overflow-y-auto h-[calc(100vh-120px)] ">
-            <!-- menu item 1-->
-            <div x-data="{ open: false }" class="transition-all duration-300 mt-2">
-                <a href="index.html" @click="open = !open"
-                    class="flex items-center w-full px-3 py-2 text-left hover:bg-gray-600 bg-gray-700 rounded px-2 transition-all duration-500">
-                    <h1 class="flex justify-between items-center gap-3 "><i class="fas fa-tachometer-alt"></i
-                            <span>Dashboard</span></h1>
+    {% include 'dashboard-sidebar.html' %}
 
-                </a>
-
-            </div>
-            <!-- menu item 2 -->
-            <div x-data="{ open: false }" class="mt-2">
-                <button @click="open = !open"
-                    class="flex items-center w-full px-3 py-2 text-left hover:bg-gray-700 rounded px-2 transition-all duration-500">
-                    <h1 class="flex justify-start items-center flex-1 gap-3"><i class="fas fa-graduation-cap"></i>
-                        <span>Academy</span>
-                    </h1>
-                    <svg :class="open ? 'rotate-90' : ''" class="w-4 h-4  transition-transform" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-                <div x-show="open" class="pl-4 space-y-1">
-                    <a href="#" class="block py-1 px-2 rounded hover:bg-gray-700">Profile</a>
-                    <div x-data="{ open: false }">
-                        <button @click="open = !open"
-                            class="flex items-center w-full py-1 px-2 text-left hover:bg-gray-700 rounded">
-                            <span class="flex-1">Security</span>
-                            <svg :class="open ? 'rotate-90' : ''" class="w-4 h-4 transition-transform" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                                </path>
-                            </svg>
-                        </button>
-                        <div x-show="open" class="pl-4 space-y-1">
-                            <a href="#" class="block py-1 px-2 rounded hover:bg-gray-700">Passwords</a>
-                            <a href="#" class="block py-1 px-2 rounded hover:bg-gray-700">2FA</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- menu item 3-->
-            <div x-data="{ open: false }" class="mt-2">
-                <button @click="open = !open"
-                    class="flex items-center w-full px-3 py-2 text-left hover:bg-gray-700 rounded px-2 transition-all duration-500">
-                    <h1 class="flex justify-start items-center flex-1 gap-3"><i class="fas fa-cogs"></i> <span>Master
-                            Settings</span></h1>
-                    <svg :class="open ? 'rotate-90' : ''" class="w-4 h-4  transition-transform" fill="none"
-                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
-                <div x-show="open" class="pl-4 space-y-1">
-                    <a href="{% url 'general_settings' %}" class="flex justify-start items-center flex-1 gap-3 p-2"><i
-                            class="fa-solid fa-sliders"></i> <span>General Setting</span></a>
-                    <a href="subject__setting.html" class="flex justify-start items-center flex-1 gap-3 p-2"><i
-                            class="fa-solid fa-sliders"></i> <span>Subject Setting</span></a>
-                    <a href="portal__notice.html" class="flex justify-start items-center flex-1 gap-3 p-2"><i
-                            class="fa-solid fa-sliders"></i> <span>Portal Notice</span></a>
-
-                </div>
-            </div>
-
-
-
-            <!-- footer  menu -->
-
-            <div
-                :class="open ? 'w-64 transition-all duration-300 fixed bottom-0 left-0' : 'w-16 transition-all duration-300 fixed bottom-0 left-0'">
-                <button
-                    class="btn-block btn bg-[#424b59] outline-none border-none text-white hover:text-gray-300  py-2 px-2 rounded-none hover:bg-[]"><i
-                        class="fa-solid fa-right-from-bracket shadow-none"></i> Logout</button>
-            </div>
-        </nav>
-    </div>
+    {% endblock sidebar %}
 
     <!-- Main content -->
+    {% block main-dashboard %}
     <main class="flex-1 p-6">
         <div class="navbar bg-base-100 shadow-sm col-span-5">
-
+            <div class="btn-bar">
+    <a class="btn-primary" href="{% url 'home' %}">Home</a>
+    <a class="btn-primary" href="{% url 'hsc_science_admission' %}">Science Admission</a>
+    <a class="btn-primary" href="{% url 'science_students' %}">Science Student Infos</a>
+    <a class="btn-primary" href="{% url 'user_logout' %}">Log Out</a>
+  </div>
             <div class="navbar-start">
               {% if site_settings.logo %}
                 <a href="/index.html" class="flex justify-center items-center">
@@ -181,6 +104,8 @@
 
         </div>
     </main>
+    {% endblock main-dashboard %}
+    
 
 </body>
 

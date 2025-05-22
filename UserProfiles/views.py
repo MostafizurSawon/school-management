@@ -44,6 +44,9 @@ def user_login(request):
         return render(request, 'register.html', {'form' : form, 'type' : 'Login'})
 
 
+def user_logout(request):
+    logout(request)
+    return redirect('user_login')
 
 
 @login_required
@@ -52,12 +55,7 @@ def profile(request):
 
     if request.user.is_superuser:
         site_instance = SiteSettings.objects.first()
-
-        # Bind SiteSettings form with POST data or with existing instance for GET
         site_form = SiteSettingsForm(request.POST or None, request.FILES or None, instance=site_instance)
-
-        # Blank Notice form for adding new notices
-        notice_form = NoticeForm(request.POST or None, request.FILES or None)
 
         if request.method == 'POST':
             if 'save_settings' in request.POST:
@@ -66,22 +64,25 @@ def profile(request):
                     messages.success(request, "Institution info updated successfully!")
                     return redirect('profile')
 
-            elif 'add_notice' in request.POST:
-                if notice_form.is_valid():
-                    notice_form.save()
-                    messages.success(request, "Notice added successfully!")
-                    return redirect('profile')
-
         context['site_settings_form'] = site_form
-        context['notice_form'] = notice_form
 
     return render(request, 'profile.html', context)
 
+@login_required
+def create_notice(request):
+    if not request.user.is_superuser:
+        messages.error(request, "You are not authorized to access this page.")
+        return redirect('home')  # Adjust as needed
 
+    form = NoticeForm(request.POST or None, request.FILES or None)
 
-def user_logout(request):
-    logout(request)
-    return redirect('user_login')
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Notice added successfully!")
+            return redirect('portal-notice')
+
+    return render(request, 'portal_notice.html', {'notice_form': form})
 
 
 

@@ -138,6 +138,7 @@
             <td>
                 <a href="{% url 'edit_student' student.id %}" class="button">Edit</a>
                 <a href="{% url 'delete_student' student.id %}" class="button delete">Delete</a>
+                <a href="{% url 'student_pdf' student.id %}" class="button" target="_blank">Print</a>
             </td>
         </tr>
         {% empty %}
