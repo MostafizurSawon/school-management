@@ -1,0 +1,1980 @@
+[
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "UserProfiles",
+    "model": "sitesettings"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "UserProfiles",
+    "model": "notice"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "hscartssubjects"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "hsccommercesubjects"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "hscsciencesubjects"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "payment"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "parentinfo"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "hscadmissioncommerce"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "address"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "hscadmissionarts"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "hscsession"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "hscadmissionscience"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "app_label": "Admissions",
+    "model": "academicinformation"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hac8wp8raxoubiqnrqm1z22ls3t6ftcq",
+  "fields": {
+    "session_data": ".eJxVjDEOwyAQBP9CHSGDAZuU6f0GdAd3wUmEJWNXUf4eI7lImi1mZ_ctAuxbDnulNcxJXIUSl1-GEJ9UWpEeUO6LjEvZ1hllU-TZVjktiV630_07yFDzsTaJPfYmDdqzI-IxArG3yJq5IW2doo4psgGrcIjgoIfIo8IjOhCfLyEgOcE:1uHfV6:KC51hiDo8EMnnzN3X9qw4kupmhRo-DaWHxEl5_g5auM",
+    "expire_date": "2025-06-04T09:12:36.131Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "icvwxxiv3bac5k9q2w6upjjp69et2uy2",
+  "fields": {
+    "session_data": ".eJxVjUkOwjAMRe-SNYo6T0v2nCFyEpsGSoOaVCCq3p1ErSrYWPrvfdsLEzD7XswOJ2E061jKTr9MgrrjGIW-wXi1XNnRT0byWOG7dfxiNQ7nvft3oAfXh-1CUyvzQtdZSxUiNQqQ2lJSRhRRVlYpJoSKCihTWSuoIAdFTSrDSCAcfZkPTFqAfhjnjB3FBli3MOfxGZ4cKrQjEho8BL_ukcyAbsv49hMcfl2_th1cNQ:1uI3zV:eI_0E0bPBg93hcKrL1Nad6B9s-j5Om4PDuaHvv6jFqU",
+    "expire_date": "2025-06-05T11:21:37.202Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "j8fe7egufs5xr4ixg98kdxpjpg4sldxm",
+  "fields": {
+    "session_data": ".eJxVjDEOwyAQBP9CHSGDAZuU6f0GdAd3wUmEJWNXUf4eI7lImi1mZ_ctAuxbDnulNcxJXIUSl1-GEJ9UWpEeUO6LjEvZ1hllU-TZVjktiV630_07yFDzsTaJPfYmDdqzI-IxArG3yJq5IW2doo4psgGrcIjgoIfIo8IjOhCfLyEgOcE:1uHId3:wGfqSqb9mb0LRzPdAhZHrsytgfy1r_nMtGK5Mm9XNx8",
+    "expire_date": "2025-06-03T08:47:17.203Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lgwrwswjjydqatil86i7w3tj018pzcs9",
+  "fields": {
+    "session_data": ".eJxVjDEOwyAQBP9CHSGDAZuU6f0GdAd3wUmEJWNXUf4eI7lImi1mZ_ctAuxbDnulNcxJXIUSl1-GEJ9UWpEeUO6LjEvZ1hllU-TZVjktiV630_07yFDzsTaJPfYmDdqzI-IxArG3yJq5IW2doo4psgGrcIjgoIfIo8IjOhCfLyEgOcE:1uHeqG:nSKP-rBdnZz-blbHt7tNKRCVSJz7bUsETnvGgdb4yn0",
+    "expire_date": "2025-06-04T08:30:24.453Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tjzil7rpyxju4dogcpk7evimh342s7jg",
+  "fields": {
+    "session_data": ".eJxVjDEOwyAQBP9CHSGDAZuU6f0GdAd3wUmEJWNXUf4eI7lImi1mZ_ctAuxbDnulNcxJXIUSl1-GEJ9UWpEeUO6LjEvZ1hllU-TZVjktiV630_07yFDzsTaJPfYmDdqzI-IxArG3yJq5IW2doo4psgGrcIjgoIfIo8IjOhCfLyEgOcE:1uHLYM:iCxLJKic9E9_fAPDA_EcX9ixVZEI9FHdzDbifZmpans",
+    "expire_date": "2025-06-03T11:54:38.767Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yddh295boa5vncul95ewey2ivk1dofcu",
+  "fields": {
+    "session_data": ".eJxVjDEOwyAQBP9CHSGDAZuU6f0GdAd3wUmEJWNXUf4eI7lImi1mZ_ctAuxbDnulNcxJXIUSl1-GEJ9UWpEeUO6LjEvZ1hllU-TZVjktiV630_07yFDzsTaJPfYmDdqzI-IxArG3yJq5IW2doo4psgGrcIjgoIfIo8IjOhCfLyEgOcE:1uHbpK:fHCeEQQ4zb6Q0fzJtiMkhAJBP7rcCEJZon30PbyXbto",
+    "expire_date": "2025-06-04T05:17:14.833Z"
+  }
+},
+{
+  "model": "UserProfiles.sitesettings",
+  "pk": 1,
+  "fields": {
+    "favicon": "favicon/starglass_dpRVSl2.png",
+    "institution_name": "Pochamaria Degree College",
+    "institution_description": "Online Admission",
+    "footer": "Pochamaria Degree Collegeeee",
+    "logo": "logos/PDCLOGO.png",
+    "address": "Hi tech park",
+    "mobile_number": "01920693720",
+    "email": "mmrsawon11@gmail.com",
+    "website": "https://jbdit2.com.bd/"
+  }
+},
+{
+  "model": "UserProfiles.notice",
+  "pk": 1,
+  "fields": {
+    "notice_title": "Demo title 1",
+    "date": null,
+    "notice_description": "Demo des 1",
+    "notice_file": "notices/DIGITAL_MARKATING.pdf"
+  }
+},
+{
+  "model": "UserProfiles.notice",
+  "pk": 2,
+  "fields": {
+    "notice_title": "Demo title 2",
+    "date": null,
+    "notice_description": "Demo description 2",
+    "notice_file": "notices/Graphics_sheet.pdf"
+  }
+},
+{
+  "model": "UserProfiles.notice",
+  "pk": 3,
+  "fields": {
+    "notice_title": "Demo title 3",
+    "date": null,
+    "notice_description": "Demo des 3",
+    "notice_file": "notices/ms_word_sheet.pdf"
+  }
+},
+{
+  "model": "UserProfiles.notice",
+  "pk": 4,
+  "fields": {
+    "notice_title": "Demo title 6",
+    "date": "2025-05-19",
+    "notice_description": "demo 6",
+    "notice_file": "notices/SEO.docx"
+  }
+},
+{
+  "model": "UserProfiles.notice",
+  "pk": 5,
+  "fields": {
+    "notice_title": "Demo title 5",
+    "date": "2025-05-22",
+    "notice_description": "fsdfds",
+    "notice_file": "notices/DIGITAL_MARKATING_4R6ONZH.pdf"
+  }
+},
+{
+  "model": "UserProfiles.notice",
+  "pk": 6,
+  "fields": {
+    "notice_title": "Demo title 9",
+    "date": "2025-05-21",
+    "notice_description": "fsdfs",
+    "notice_file": "notices/Graphics_sheet_4R72Zms.pdf"
+  }
+},
+{
+  "model": "UserProfiles.notice",
+  "pk": 7,
+  "fields": {
+    "notice_title": "new notice 1",
+    "date": "2025-05-21",
+    "notice_description": "New notice",
+    "notice_file": "notices/starglass.png"
+  }
+},
+{
+  "model": "UserProfiles.notice",
+  "pk": 8,
+  "fields": {
+    "notice_title": "new notice 1",
+    "date": "2025-05-21",
+    "notice_description": "New notice",
+    "notice_file": "notices/starglass_NoNE9bL.png"
+  }
+},
+{
+  "model": "Admissions.hscsession",
+  "pk": 1,
+  "fields": {
+    "session": "2022-2023"
+  }
+},
+{
+  "model": "Admissions.hscsession",
+  "pk": 2,
+  "fields": {
+    "session": "2023-2024"
+  }
+},
+{
+  "model": "Admissions.hscsession",
+  "pk": 3,
+  "fields": {
+    "session": "2024-2025"
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 1,
+  "fields": {
+    "subject_name": "Bangla",
+    "subject_code": null,
+    "is_main": false,
+    "fourth": false,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 2,
+  "fields": {
+    "subject_name": "English",
+    "subject_code": null,
+    "is_main": false,
+    "fourth": false,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 3,
+  "fields": {
+    "subject_name": "ICT",
+    "subject_code": null,
+    "is_main": false,
+    "fourth": false,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 4,
+  "fields": {
+    "subject_name": "Physics",
+    "subject_code": null,
+    "is_main": false,
+    "fourth": false,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 5,
+  "fields": {
+    "subject_name": "Chemistry",
+    "subject_code": null,
+    "is_main": false,
+    "fourth": false,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 6,
+  "fields": {
+    "subject_name": "Higher Math",
+    "subject_code": null,
+    "is_main": true,
+    "fourth": true,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 7,
+  "fields": {
+    "subject_name": "Biology",
+    "subject_code": null,
+    "is_main": true,
+    "fourth": true,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 8,
+  "fields": {
+    "subject_name": "Agriculture",
+    "subject_code": null,
+    "is_main": false,
+    "fourth": true,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 9,
+  "fields": {
+    "subject_name": "Statistic",
+    "subject_code": null,
+    "is_main": false,
+    "fourth": true,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscsciencesubjects",
+  "pk": 10,
+  "fields": {
+    "subject_name": "Psychology",
+    "subject_code": null,
+    "is_main": false,
+    "fourth": true,
+    "is_active": true
+  }
+},
+{
+  "model": "Admissions.hscadmissionscience",
+  "pk": 2,
+  "fields": {
+    "ssc_roll": 3423421,
+    "hsc_session": 1,
+    "class_roll": 312,
+    "merit_position": 23,
+    "name": "Demo Name 1",
+    "mobile": "01975645124",
+    "blood_group": "A-",
+    "birth_certificate_no": "5497615574",
+    "birthdate": "2003-06-11",
+    "marital_status": "Single",
+    "gender": "Male",
+    "nationality": "Bd",
+    "religion": "Islam",
+    "photo": "hsc-science/itachi.png"
+  }
+},
+{
+  "model": "Admissions.hscadmissionscience",
+  "pk": 3,
+  "fields": {
+    "ssc_roll": 1000000,
+    "hsc_session": 1,
+    "class_roll": 3,
+    "merit_position": 3,
+    "name": "demo name 2",
+    "mobile": "01524156854",
+    "blood_group": "A+",
+    "birth_certificate_no": "55545432",
+    "birthdate": "2006-05-12",
+    "marital_status": "Single",
+    "gender": "Male",
+    "nationality": "Bd",
+    "religion": "Islam",
+    "photo": "hsc-science/zenitsu.png"
+  }
+},
+{
+  "model": "Admissions.parentinfo",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "fathers_name_english": "Demo father",
+    "fathers_nid": "5275527575",
+    "fathers_date_of_birth": "1986-05-10",
+    "fathers_mobile": "01654215467",
+    "father_occupation": "Job",
+    "fathers_monthly_income": 56000,
+    "mother_name_english": "Demo Mothewr",
+    "mothers_nid": "4578554412",
+    "mothers_date_of_birth": "1994-05-10",
+    "mothers_mobile": "01845619548",
+    "mother_occupation": "House Wife",
+    "mothers_monthly_income": 10000,
+    "guardian": "Father",
+    "guardian_name_english": "Demo Guardian",
+    "guardian_date_of_birth": "1986-05-11",
+    "guardian_mobile": "01548254773",
+    "guardian_nid": "468464"
+  }
+},
+{
+  "model": "Admissions.parentinfo",
+  "pk": 2,
+  "fields": {
+    "student": 3,
+    "fathers_name_english": "Demo father 2",
+    "fathers_nid": "3213123123",
+    "fathers_date_of_birth": "1974-05-20",
+    "fathers_mobile": "01567945167",
+    "father_occupation": "Job",
+    "fathers_monthly_income": 50000,
+    "mother_name_english": "Demo Mother 2",
+    "mothers_nid": "231232131233213",
+    "mothers_date_of_birth": "1998-05-20",
+    "mothers_mobile": "01964253167",
+    "mother_occupation": "House Wife",
+    "mothers_monthly_income": 0,
+    "guardian": "Other",
+    "guardian_name_english": "Demo Guardian 2",
+    "guardian_date_of_birth": "1991-05-19",
+    "guardian_mobile": "01548254790",
+    "guardian_nid": "46846416540"
+  }
+},
+{
+  "model": "Admissions.address",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "wardNo": 4,
+    "postOffice": "3123",
+    "policeStation": "Demo Station",
+    "district": "Rajshai",
+    "postal_code": 4554,
+    "permanent_address_same": true,
+    "permanent_wardNo": 4214,
+    "permanent_postOffice": "deee",
+    "permanent_policeStation": "fdfd",
+    "permanent_district": "Rajshahi",
+    "permanent_postal_code": 1422,
+    "qouta_freedom": true,
+    "qouta_community": false
+  }
+},
+{
+  "model": "Admissions.address",
+  "pk": 2,
+  "fields": {
+    "student": 3,
+    "wardNo": 3,
+    "postOffice": "sadf",
+    "policeStation": "Demo Station",
+    "district": "Rajshai",
+    "postal_code": 4444,
+    "permanent_address_same": true,
+    "permanent_wardNo": 3,
+    "permanent_postOffice": "deee",
+    "permanent_policeStation": "fdfd",
+    "permanent_district": "Rajshahi",
+    "permanent_postal_code": 323,
+    "qouta_freedom": true,
+    "qouta_community": true
+  }
+},
+{
+  "model": "Admissions.academicinformation",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "ssc_board": "Rajshahi",
+    "ssc_year": "2023",
+    "sscInstitution": "sdfg sdf sdf",
+    "sscRoll": 3232151,
+    "sscReg": 42342,
+    "sscSession": 2011,
+    "sscGpa": "5.00",
+    "compulsory_bangla": 1,
+    "compulsory_english": 2,
+    "compulsory_ict": 3,
+    "elective_physics": 4,
+    "elective_chemistry": 5,
+    "main_subject": 6,
+    "fourth_subject": 7
+  }
+},
+{
+  "model": "Admissions.academicinformation",
+  "pk": 2,
+  "fields": {
+    "student": 3,
+    "ssc_board": "Dhaka",
+    "ssc_year": "2023",
+    "sscInstitution": "sdfg sdf sdf",
+    "sscRoll": 332132,
+    "sscReg": 323123,
+    "sscSession": 2024,
+    "sscGpa": "4.50",
+    "compulsory_bangla": 1,
+    "compulsory_english": 2,
+    "compulsory_ict": 3,
+    "elective_physics": 4,
+    "elective_chemistry": 5,
+    "main_subject": 7,
+    "fourth_subject": 6
+  }
+},
+{
+  "model": "Admissions.payment",
+  "pk": 1,
+  "fields": {
+    "student": 2,
+    "method": "Bkash",
+    "amount": "500.00",
+    "transaction_id": "gdfgdfgdrt",
+    "payment_date": "2025-05-21",
+    "status": "Paid",
+    "receipt_number": "5"
+  }
+},
+{
+  "model": "Admissions.payment",
+  "pk": 2,
+  "fields": {
+    "student": 3,
+    "method": "Bkash",
+    "amount": "700.00",
+    "transaction_id": "gdfgdfgdre",
+    "payment_date": "2025-05-21",
+    "status": "Paid",
+    "receipt_number": "6"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add Site Setting",
+    "content_type": [
+      "UserProfiles",
+      "sitesettings"
+    ],
+    "codename": "add_sitesettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change Site Setting",
+    "content_type": [
+      "UserProfiles",
+      "sitesettings"
+    ],
+    "codename": "change_sitesettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete Site Setting",
+    "content_type": [
+      "UserProfiles",
+      "sitesettings"
+    ],
+    "codename": "delete_sitesettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view Site Setting",
+    "content_type": [
+      "UserProfiles",
+      "sitesettings"
+    ],
+    "codename": "view_sitesettings"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add Notice",
+    "content_type": [
+      "UserProfiles",
+      "notice"
+    ],
+    "codename": "add_notice"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change Notice",
+    "content_type": [
+      "UserProfiles",
+      "notice"
+    ],
+    "codename": "change_notice"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete Notice",
+    "content_type": [
+      "UserProfiles",
+      "notice"
+    ],
+    "codename": "delete_notice"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view Notice",
+    "content_type": [
+      "UserProfiles",
+      "notice"
+    ],
+    "codename": "view_notice"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add hsc arts subjects",
+    "content_type": [
+      "Admissions",
+      "hscartssubjects"
+    ],
+    "codename": "add_hscartssubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change hsc arts subjects",
+    "content_type": [
+      "Admissions",
+      "hscartssubjects"
+    ],
+    "codename": "change_hscartssubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete hsc arts subjects",
+    "content_type": [
+      "Admissions",
+      "hscartssubjects"
+    ],
+    "codename": "delete_hscartssubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view hsc arts subjects",
+    "content_type": [
+      "Admissions",
+      "hscartssubjects"
+    ],
+    "codename": "view_hscartssubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add hsc commerce subjects",
+    "content_type": [
+      "Admissions",
+      "hsccommercesubjects"
+    ],
+    "codename": "add_hsccommercesubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change hsc commerce subjects",
+    "content_type": [
+      "Admissions",
+      "hsccommercesubjects"
+    ],
+    "codename": "change_hsccommercesubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete hsc commerce subjects",
+    "content_type": [
+      "Admissions",
+      "hsccommercesubjects"
+    ],
+    "codename": "delete_hsccommercesubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view hsc commerce subjects",
+    "content_type": [
+      "Admissions",
+      "hsccommercesubjects"
+    ],
+    "codename": "view_hsccommercesubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add hsc science subjects",
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "codename": "add_hscsciencesubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change hsc science subjects",
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "codename": "change_hscsciencesubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete hsc science subjects",
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "codename": "delete_hscsciencesubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view hsc science subjects",
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "codename": "view_hscsciencesubjects"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add payment",
+    "content_type": [
+      "Admissions",
+      "payment"
+    ],
+    "codename": "add_payment"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change payment",
+    "content_type": [
+      "Admissions",
+      "payment"
+    ],
+    "codename": "change_payment"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete payment",
+    "content_type": [
+      "Admissions",
+      "payment"
+    ],
+    "codename": "delete_payment"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view payment",
+    "content_type": [
+      "Admissions",
+      "payment"
+    ],
+    "codename": "view_payment"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add parent info",
+    "content_type": [
+      "Admissions",
+      "parentinfo"
+    ],
+    "codename": "add_parentinfo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change parent info",
+    "content_type": [
+      "Admissions",
+      "parentinfo"
+    ],
+    "codename": "change_parentinfo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete parent info",
+    "content_type": [
+      "Admissions",
+      "parentinfo"
+    ],
+    "codename": "delete_parentinfo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view parent info",
+    "content_type": [
+      "Admissions",
+      "parentinfo"
+    ],
+    "codename": "view_parentinfo"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add hsc admission commerce",
+    "content_type": [
+      "Admissions",
+      "hscadmissioncommerce"
+    ],
+    "codename": "add_hscadmissioncommerce"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change hsc admission commerce",
+    "content_type": [
+      "Admissions",
+      "hscadmissioncommerce"
+    ],
+    "codename": "change_hscadmissioncommerce"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete hsc admission commerce",
+    "content_type": [
+      "Admissions",
+      "hscadmissioncommerce"
+    ],
+    "codename": "delete_hscadmissioncommerce"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view hsc admission commerce",
+    "content_type": [
+      "Admissions",
+      "hscadmissioncommerce"
+    ],
+    "codename": "view_hscadmissioncommerce"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add address",
+    "content_type": [
+      "Admissions",
+      "address"
+    ],
+    "codename": "add_address"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change address",
+    "content_type": [
+      "Admissions",
+      "address"
+    ],
+    "codename": "change_address"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete address",
+    "content_type": [
+      "Admissions",
+      "address"
+    ],
+    "codename": "delete_address"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view address",
+    "content_type": [
+      "Admissions",
+      "address"
+    ],
+    "codename": "view_address"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add hsc admission arts",
+    "content_type": [
+      "Admissions",
+      "hscadmissionarts"
+    ],
+    "codename": "add_hscadmissionarts"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change hsc admission arts",
+    "content_type": [
+      "Admissions",
+      "hscadmissionarts"
+    ],
+    "codename": "change_hscadmissionarts"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete hsc admission arts",
+    "content_type": [
+      "Admissions",
+      "hscadmissionarts"
+    ],
+    "codename": "delete_hscadmissionarts"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view hsc admission arts",
+    "content_type": [
+      "Admissions",
+      "hscadmissionarts"
+    ],
+    "codename": "view_hscadmissionarts"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add hsc session",
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "codename": "add_hscsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change hsc session",
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "codename": "change_hscsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete hsc session",
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "codename": "delete_hscsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view hsc session",
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "codename": "view_hscsession"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add hsc admission science",
+    "content_type": [
+      "Admissions",
+      "hscadmissionscience"
+    ],
+    "codename": "add_hscadmissionscience"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change hsc admission science",
+    "content_type": [
+      "Admissions",
+      "hscadmissionscience"
+    ],
+    "codename": "change_hscadmissionscience"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete hsc admission science",
+    "content_type": [
+      "Admissions",
+      "hscadmissionscience"
+    ],
+    "codename": "delete_hscadmissionscience"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view hsc admission science",
+    "content_type": [
+      "Admissions",
+      "hscadmissionscience"
+    ],
+    "codename": "view_hscadmissionscience"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can add academic information",
+    "content_type": [
+      "Admissions",
+      "academicinformation"
+    ],
+    "codename": "add_academicinformation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can change academic information",
+    "content_type": [
+      "Admissions",
+      "academicinformation"
+    ],
+    "codename": "change_academicinformation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can delete academic information",
+    "content_type": [
+      "Admissions",
+      "academicinformation"
+    ],
+    "codename": "delete_academicinformation"
+  }
+},
+{
+  "model": "auth.permission",
+  "fields": {
+    "name": "Can view academic information",
+    "content_type": [
+      "Admissions",
+      "academicinformation"
+    ],
+    "codename": "view_academicinformation"
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$PQBFmyeK39uPVjfS89cGa2$Zo2pAZpJYq0BXEyslBTHT8YBCKl/aVy3W7dazJc9mEc=",
+    "last_login": "2025-05-21T09:12:36.124Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "mostafizur1102@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-19T10:19:29.607Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2025-05-21T05:17:35.050Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "1",
+    "object_repr": "Bangla (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2025-05-21T05:17:40.616Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "2",
+    "object_repr": "English (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2025-05-21T05:17:47.976Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "3",
+    "object_repr": "ICT (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2025-05-21T05:17:54.489Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "4",
+    "object_repr": "Physics (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2025-05-21T05:18:00.044Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "5",
+    "object_repr": "Chemistry (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2025-05-21T05:18:05.009Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "6",
+    "object_repr": "Higher Math (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2025-05-21T05:18:10.631Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "7",
+    "object_repr": "Biology (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2025-05-21T05:18:21.344Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "8",
+    "object_repr": "Agriculture (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2025-05-21T05:18:26.335Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "9",
+    "object_repr": "Statistic (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2025-05-21T05:18:34.586Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "10",
+    "object_repr": "Psychology (None)",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2025-05-21T05:52:49.570Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "1",
+    "object_repr": "2022",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2025-05-21T05:52:53.195Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "2",
+    "object_repr": "2023",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2025-05-21T05:52:56.802Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "3",
+    "object_repr": "2024",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2025-05-21T05:52:59.873Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "4",
+    "object_repr": "2025",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2025-05-21T05:53:02.817Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "5",
+    "object_repr": "2026",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2025-05-21T05:53:16.090Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "1",
+    "object_repr": "2022-2023",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Session\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2025-05-21T05:53:24.025Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "2",
+    "object_repr": "2023-2024",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Session\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2025-05-21T05:53:30.016Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "3",
+    "object_repr": "2024-2025",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Session\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2025-05-21T05:53:36.030Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "5",
+    "object_repr": "2026",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2025-05-21T05:53:36.030Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsession"
+    ],
+    "object_id": "4",
+    "object_repr": "2025",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2025-05-21T05:54:09.356Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscadmissionscience"
+    ],
+    "object_id": "1",
+    "object_repr": "Name: Md Rahim Uddin | Group: Science | Class Roll: 2 | Session: 2022-2023",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2025-05-21T09:35:07.211Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscadmissionscience"
+    ],
+    "object_id": "2",
+    "object_repr": "Name: Demo Name 1 | Group: Science | Class Roll: 312 | Session: 2022-2023",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Photo\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2025-05-21T10:50:48.976Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "10",
+    "object_repr": "Psychology is (True)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Fourth\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2025-05-21T10:51:00.098Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "6",
+    "object_repr": "Higher Math is (True)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is main\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2025-05-21T10:51:08.903Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "7",
+    "object_repr": "Biology is (True)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Fourth\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2025-05-21T10:51:15.339Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "6",
+    "object_repr": "Higher Math is (True)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Fourth\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2025-05-21T10:51:19.012Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "7",
+    "object_repr": "Biology is (True)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is main\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2025-05-21T10:51:24.542Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "8",
+    "object_repr": "Agriculture is (True)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Fourth\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2025-05-21T10:53:15.632Z",
+    "user": [
+      "admin"
+    ],
+    "content_type": [
+      "Admissions",
+      "hscsciencesubjects"
+    ],
+    "object_id": "9",
+    "object_repr": "Statistic is (True)",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Fourth\"]}}]"
+  }
+}
+]

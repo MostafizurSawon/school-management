@@ -23,202 +23,43 @@
     </style>
 </head>
 <body>
+
 <center>
     <a href="{% url 'science_students' %}">Science Student Infos</a> |
     <a href="{% url 'user_logout' %}">Log Out</a>
 </center>
 
-<h2>Edit Student: {{ student.name }}</h2>
+<h2>Edit Student Info</h2>
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <!-- 1. Admission Info -->
     <section>
         <h3>Admission Info</h3>
-        <label>Name</label>
-        <input type="text" name="name" value="{{ student.name }}">
-
-        <label>SSC Roll</label>
-        <input type="text" name="ssc_roll" value="{{ student.ssc_roll }}">
-
-        <label>Class Roll</label>
-        <input type="text" name="class_roll" value="{{ student.class_roll }}">
-
-        <label>Merit Position</label>
-        <input type="number" name="merit_position" value="{{ student.merit_position }}">
-
-        <label>Mobile</label>
-        <input type="text" name="mobile" value="{{ student.mobile }}">
-
-        <label>Blood Group</label>
-        <input type="text" name="blood_group" value="{{ student.blood_group }}">
-
-        <label>Birth Certificate No</label>
-        <input type="text" name="birth_certificate_no" value="{{ student.birth_certificate_no }}">
-
-        <label>Birthdate</label>
-        <input type="date" name="birthdate" value="{{ student.birthdate|date:'Y-m-d' }}">
-
-        <label>Marital Status</label>
-        <input type="text" name="marital_status" value="{{ student.marital_status }}">
-
-        <label>Gender</label>
-        <input type="text" name="gender" value="{{ student.gender }}">
-
-        <label>Nationality</label>
-        <input type="text" name="nationality" value="{{ student.nationality }}">
-
-        <label>Religion</label>
-        <input type="text" name="religion" value="{{ student.religion }}">
-
-        <label>Photo</label>
-        <input type="file" name="photo">
-        {% if student.photo %}
-        <br><img src="{{ student.photo.url }}" alt="Photo" style="width:80px; margin-top:10px;">
-        {% endif %}
+        {{ admission_form.as_p }}
     </section>
 
-    <!-- 2. Parent Info -->
     <section>
         <h3>Parent Info</h3>
-        <label>Father's Name</label>
-        <input type="text" name="fathers_name_english" value="{{ student.parent_info.fathers_name_english }}">
-
-        <label>Father's NID</label>
-        <input type="text" name="fathers_nid" value="{{ student.parent_info.fathers_nid }}">
-
-        <label>Father's Date of Birth</label>
-        <input type="date" name="fathers_date_of_birth" value="{{ student.parent_info.fathers_date_of_birth|date:'Y-m-d' }}">
-
-        <label>Father's Mobile</label>
-        <input type="text" name="fathers_mobile" value="{{ student.parent_info.fathers_mobile }}">
-
-        <label>Father's Occupation</label>
-        <input type="text" name="father_occupation" value="{{ student.parent_info.father_occupation }}">
-
-        <label>Father's Monthly Income</label>
-        <input type="number" step="any" name="fathers_monthly_income" value="{{ student.parent_info.fathers_monthly_income }}">
-
-        <label>Mother's Name</label>
-        <input type="text" name="mother_name_english" value="{{ student.parent_info.mother_name_english }}">
-
-        <label>Mother's NID</label>
-        <input type="text" name="mothers_nid" value="{{ student.parent_info.mothers_nid }}">
-
-        <label>Mother's Date of Birth</label>
-        <input type="date" name="mothers_date_of_birth" value="{{ student.parent_info.mothers_date_of_birth|date:'Y-m-d' }}">
-
-        <label>Mother's Mobile</label>
-        <input type="text" name="mothers_mobile" value="{{ student.parent_info.mothers_mobile }}">
-
-        <label>Mother's Occupation</label>
-        <input type="text" name="mother_occupation" value="{{ student.parent_info.mother_occupation }}">
-
-        <label>Mother's Monthly Income</label>
-        <input type="number" step="any" name="mothers_monthly_income" value="{{ student.parent_info.mothers_monthly_income }}">
-
-        <label>Guardian</label>
-        <input type="text" name="guardian" value="{{ student.parent_info.guardian }}">
-
-        <label>Guardian Name</label>
-        <input type="text" name="guardian_name_english" value="{{ student.parent_info.guardian_name_english }}">
-
-        <label>Guardian NID</label>
-        <input type="text" name="guardian_nid" value="{{ student.parent_info.guardian_nid }}">
-
-        <label>Guardian Date of Birth</label>
-        <input type="date" name="guardian_date_of_birth" value="{{ student.parent_info.guardian_date_of_birth|date:'Y-m-d' }}">
-
-        <label>Guardian Mobile</label>
-        <input type="text" name="guardian_mobile" value="{{ student.parent_info.guardian_mobile }}">
+        {{ parent_form.as_p }}
     </section>
 
-    <!-- 3. Address Info -->
     <section>
         <h3>Address Info</h3>
-        <label>Ward No</label>
-        <input type="text" name="wardNo" value="{{ student.address.wardNo }}">
-
-        <label>Post Office</label>
-        <input type="text" name="postOffice" value="{{ student.address.postOffice }}">
-
-        <label>Police Station</label>
-        <input type="text" name="policeStation" value="{{ student.address.policeStation }}">
-
-        <label>District</label>
-        <input type="text" name="district" value="{{ student.address.district }}">
-
-        <label>Postal Code</label>
-        <input type="text" name="postal_code" value="{{ student.address.postal_code }}">
-
-        <label>Permanent Same?</label>
-        <input type="checkbox" name="permanent_address_same" {% if student.address.permanent_address_same %}checked{% endif %}>
-
-        <label>Permanent Ward No</label>
-        <input type="text" name="permanent_wardNo" value="{{ student.address.permanent_wardNo }}">
-
-        <label>Permanent Post Office</label>
-        <input type="text" name="permanent_postOffice" value="{{ student.address.permanent_postOffice }}">
-
-        <label>Permanent Police Station</label>
-        <input type="text" name="permanent_policeStation" value="{{ student.address.permanent_policeStation }}">
-
-        <label>Permanent District</label>
-        <input type="text" name="permanent_district" value="{{ student.address.permanent_district }}">
-
-        <label>Permanent Postal Code</label>
-        <input type="text" name="permanent_postal_code" value="{{ student.address.permanent_postal_code }}">
-
-        <label>Freedom Quota</label>
-        <input type="checkbox" name="qouta_freedom" {% if student.address.qouta_freedom %}checked{% endif %}>
-
-        <label>Community Quota</label>
-        <input type="checkbox" name="qouta_community" {% if student.address.qouta_community %}checked{% endif %}>
+        {{ address_form.as_p }}
     </section>
 
-    <!-- 4. Academic Info -->
     <section>
         <h3>Academic Info</h3>
-        <label>SSC Board</label>
-        <input type="text" name="ssc_board" value="{{ student.academic_info.ssc_board }}">
-
-        <label>SSC Year</label>
-        <input type="number" name="ssc_year" value="{{ student.academic_info.ssc_year }}">
-
-        <label>SSC Roll</label>
-        <input type="text" name="sscRoll" value="{{ student.academic_info.sscRoll }}">
-
-        <label>SSC Reg</label>
-        <input type="text" name="sscReg" value="{{ student.academic_info.sscReg }}">
-
-        <label>SSC Session</label>
-        <input type="text" name="sscSession" value="{{ student.academic_info.sscSession }}">
-
-        <label>SSC GPA</label>
-        <input type="text" name="sscGpa" value="{{ student.academic_info.sscGpa }}">
-
-        <label>Institution</label>
-        <input type="text" name="sscInstitution" value="{{ student.academic_info.sscInstitution }}">
+        {{ academic_form.as_p }}
     </section>
 
-    <!-- 5. Payment Info -->
     <section>
         <h3>Payment Info</h3>
-        <label>Payment Method</label>
-        <input type="text" name="method" value="{{ student.payment.method }}">
-
-        <label>Transaction ID</label>
-        <input type="text" name="transaction_id" value="{{ student.payment.transaction_id }}">
-
-        <label>Amount</label>
-        <input type="number" step="any" name="amount" value="{{ student.payment.amount }}">
-
-        <label>Payment Date</label>
-        <input type="date" name="payment_date" value="{{ student.payment.payment_date|date:'Y-m-d' }}">
+        {{ payment_form.as_p }}
     </section>
 
-    <button type="submit">Update</button>
+    <button type="submit">Update Student</button>
 </form>
 
 </body>

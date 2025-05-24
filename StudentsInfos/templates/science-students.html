@@ -87,6 +87,11 @@
             text-align: center;
             font-style: italic;
         }
+
+        .btn-primary.active {
+            box-shadow: 0 0 0 2px #000 inset;
+        }
+
     </style>
 </head>
 <body>
@@ -95,7 +100,45 @@
     <a href="{% url 'home' %}" class="btn-primary">Home</a>
     <a href="{% url 'user_logout' %}" class="btn-danger">Log Out</a>
 </div>
+<br>
+<!-- session filter bar -->
+<!-- <div class="btn-bar" style="margin-bottom:1rem;">
+  <strong>Filter by Session:</strong>
+  <a href="{% url 'science_students' %}" 
+     class="btn-primary {% if not selected_session %}active{% endif %}">
+    All
+  </a>
 
+  {% for sess in sessions %}
+    <a href="?session={{ sess.id }}"
+       class="btn-primary {% if selected_session and sess.id == selected_session.id %}active{% endif %}">
+      {{ sess.session }}
+    </a>
+  {% endfor %}
+</div> -->
+
+<!-- session filter dropdown -->
+<form method="get" id="session-filter-form" style="margin-bottom:1.5rem; text-align:center;">
+  <label for="session-select" style="font-weight:bold; margin-right:0.5rem;">
+    Filter by Session:
+  </label>
+  <select name="session" id="session-select"
+          onchange="document.getElementById('session-filter-form').submit()"
+          style="padding:6px 10px; font-size:1rem;">
+    <option value="" {% if not selected_session %}selected{% endif %}>
+      All Sessions
+    </option>
+    {% for sess in sessions %}
+      <option value="{{ sess.id }}"
+        {% if selected_session and sess.id == selected_session.id %}selected{% endif %}>
+        {{ sess.session }}
+      </option>
+    {% endfor %}
+  </select>
+</form>
+
+
+<br>
 <h1>HSC Science Admission - All Students Info</h1>
 
 <!-- 1. Personal Information -->
@@ -106,6 +149,7 @@
             <th>Name</th>
             <th>SSC Roll</th>
             <th>Class Roll</th>
+            <th>Session</th>  
             <th>Merit Position</th>
             <th>Mobile</th>
             <th>Blood Group</th>
@@ -125,6 +169,7 @@
             <td>{{ student.name }}</td>
             <td>{{ student.ssc_roll }}</td>
             <td>{{ student.class_roll }}</td>
+            <td>{{ student.hsc_session.session }}</td>
             <td>{{ student.merit_position }}</td>
             <td>{{ student.mobile }}</td>
             <td>{{ student.blood_group }}</td>

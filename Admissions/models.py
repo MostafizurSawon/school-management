@@ -9,6 +9,13 @@ class HscSession(models.Model):
     def __str__(self):
         return self.session
     
+class SscSession(models.Model):
+    session = models.CharField(max_length=9, unique=True)
+
+    def __str__(self):
+        return self.session
+
+    
 class HscScienceSubjects(models.Model):
     subject_name = models.CharField(max_length=30)
     subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
@@ -142,7 +149,14 @@ class AcademicInformation(models.Model):
     sscInstitution = models.CharField(max_length=100, null=True, blank=True)
     sscRoll = models.IntegerField(null=True, blank=True)
     sscReg = models.IntegerField(null=True, blank=True)
-    sscSession = models.IntegerField(null=True, blank=True)
+    ssc_session = models.ForeignKey(
+        SscSession,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='academic_infos'
+    )
+
     sscGpa = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     
     compulsory_bangla = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='compulsory_bangla')

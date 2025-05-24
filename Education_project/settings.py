@@ -88,11 +88,11 @@ WSGI_APPLICATION = 'Education_project.wsgi.application'
 # Database
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'mysql.connector.django',
+#         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'jbditlabs_education',
 #         'USER': 'jbditlabs_sawon',
 #         'PASSWORD': '31012011@Sa',
-#         'HOST': 'https://host44.registrar-servers.com:2083',
+#         'HOST': 'https://host44.registrar-servers.com',
 #         'Port': '3306'
 #     }
 # }
@@ -104,6 +104,22 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'dfiles',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
+
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
