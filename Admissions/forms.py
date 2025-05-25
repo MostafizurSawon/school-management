@@ -1,5 +1,13 @@
 from django import forms
-from .models import HscAdmissionScience, ParentInfo, Address, AcademicInformation, Payment
+from .models import HscAdmissionScience, ParentInfo, Address, AcademicInformation, Payment, HscSession
+
+# class HscSessionForm(forms.ModelForm):
+#     class Meta:
+#         model = HscSession
+#         fields = ['__all__']
+#         widgets = {
+#             'session_name': forms.TextInput(attrs={'class': 'form-control'})
+#         }
 
 class HscAdmissionScienceForm(forms.ModelForm):
     birthdate = forms.DateField(
@@ -71,7 +79,7 @@ class AddressForm(forms.ModelForm):
 class AcademicInformationForm(forms.ModelForm):
     class Meta:
         model = AcademicInformation
-        fields = '__all__'
+        exclude = ['student']
         widgets = {
           'ssc_session': forms.Select(attrs={'class':'form-control'}),
         }

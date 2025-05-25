@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'Education_project.wsgi.application'
 #         'NAME': 'jbditlabs_education',
 #         'USER': 'jbditlabs_sawon',
 #         'PASSWORD': '31012011@Sa',
-#         'HOST': 'https://host44.registrar-servers.com',
+#         'HOST': 'https://host44.registrar-servers.com/',
 #         'Port': '3306'
 #     }
 # }

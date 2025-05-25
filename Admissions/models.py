@@ -5,6 +5,7 @@ numeric_validator = RegexValidator(r'^\d{11}$', 'Enter a valid 11-digit number.'
 
 class HscSession(models.Model):
     session = models.CharField(max_length=9, unique=True)
+    admission_fee = models.IntegerField(default=0)
 
     def __str__(self):
         return self.session

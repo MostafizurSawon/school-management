@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Admission Form for Science</title>
   <style>
     body {
@@ -145,35 +145,27 @@
 
       <div class="form-grid">
 
-    
         {% if wizard.steps.current == 'parent' %}
-
-         
           {% for field in form %}
-          {% if field.name != 'guardian_name_english' and field.name != 'guardian_date_of_birth' and field.name != 'guardian_nid' and field.name != 'guardian_mobile' %}
+            {% if field.name != 'guardian_name_english' and field.name != 'guardian_date_of_birth' and field.name != 'guardian_nid' and field.name != 'guardian_mobile' %}
+              <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                  <small>{{ field.help_text }}</small>
+                {% endif %}
+                {% if field.errors %}
+                  <div class="field-errors">
+                    {% for e in field.errors %}{{ e }}<br>{% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
 
-            <div class="form-group">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{ field }}
-              {% if field.help_text %}
-                <small>{{ field.help_text }}</small>
-              {% endif %}
-              {% if field.errors %}
-                <div class="field-errors">
-                  {% for e in field.errors %}{{ e }}<br>{% endfor %}
-                </div>
-              {% endif %}
-            </div>
-          {% endif %}
-        {% endfor %}
-
-
-          
           <div class="guardian-extra">
             <div class="form-group">
-              <label for="{{ form.guardian_name_english.id_for_label }}">
-                Guardian’s Name (English)
-              </label>
+              <label for="{{ form.guardian_name_english.id_for_label }}">Guardian’s Name (English)</label>
               {{ form.guardian_name_english }}
               {% if form.guardian_name_english.errors %}
                 <div class="field-errors">
@@ -183,9 +175,7 @@
             </div>
 
             <div class="form-group">
-              <label for="{{ form.guardian_date_of_birth.id_for_label }}">
-                Guardian Date of Birth
-              </label>
+              <label for="{{ form.guardian_date_of_birth.id_for_label }}">Guardian Date of Birth</label>
               {{ form.guardian_date_of_birth }}
               {% if form.guardian_date_of_birth.errors %}
                 <div class="field-errors">
@@ -195,9 +185,7 @@
             </div>
 
             <div class="form-group">
-              <label for="{{ form.guardian_nid.id_for_label }}">
-                Guardian’s NID Number
-              </label>
+              <label for="{{ form.guardian_nid.id_for_label }}">Guardian’s NID Number</label>
               {{ form.guardian_nid }}
               {% if form.guardian_nid.errors %}
                 <div class="field-errors">
@@ -207,9 +195,7 @@
             </div>
 
             <div class="form-group">
-              <label for="{{ form.guardian_mobile.id_for_label }}">
-                Guardian’s Mobile Number
-              </label>
+              <label for="{{ form.guardian_mobile.id_for_label }}">Guardian’s Mobile Number</label>
               {{ form.guardian_mobile }}
               {% if form.guardian_mobile.errors %}
                 <div class="field-errors">
@@ -219,8 +205,86 @@
             </div>
           </div>
 
+        {% elif wizard.steps.current == 'address' %}
+          <div class="section-header"><h2>Present Address</h2></div>
+
+          <div class="form-group">
+            <label for="{{ form.wardNo.id_for_label }}">Village/Mohalla/Ward No.: *</label>
+            {{ form.wardNo }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.postOffice.id_for_label }}">Post Office: *</label>
+            {{ form.postOffice }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.policeStation.id_for_label }}">Police Station: *</label>
+            {{ form.policeStation }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.district.id_for_label }}">District: *</label>
+            {{ form.district }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.postal_code.id_for_label }}">Postal Code: *</label>
+            {{ form.postal_code }}
+          </div>
+
+          <fieldset class="form-group">
+            <label>
+              <input type="checkbox" id="same-as-present" />
+              Permanent Address same
+            </label>
+          </fieldset>
+
+          <div id="permanent-address-fields">
+            <div class="section-header"><h2>Permanent Address</h2></div>
+
+            <div class="form-group">
+              <label for="{{ form.permanent_wardNo.id_for_label }}">Village/Mohalla/Ward No.: *</label>
+              {{ form.permanent_wardNo }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.permanent_postOffice.id_for_label }}">Post Office: *</label>
+              {{ form.permanent_postOffice }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.permanent_policeStation.id_for_label }}">Police Station: *</label>
+              {{ form.permanent_policeStation }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.permanent_district.id_for_label }}">District: *</label>
+              {{ form.permanent_district }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.permanent_postal_code.id_for_label }}">Postal Code: *</label>
+              {{ form.permanent_postal_code }}
+            </div>
+          </div>
+
+       <fieldset class="form-group">
+            <legend>Special Quota: freedom fighters / PWD / etc: *</legend>
+            <label><input type="radio" name="qouta_freedom" value="True" {% if form.qouta_freedom.value == True %}checked{% endif %}> Yes</label>
+            <label><input type="radio" name="qouta_freedom" value="False" {% if form.qouta_freedom.value == False %}checked{% endif %}> No</label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Whether the student belongs to any community: *</legend>
+            <label><input type="radio" name="qouta_community" value="True" {% if form.qouta_community.value == True %}checked{% endif %}> Yes</label>
+            <label><input type="radio" name="qouta_community" value="False" {% if form.qouta_community.value == False %}checked{% endif %}> No</label>
+          </fieldset>
+
+          <!-- <fieldset class="form-group">
+            <legend>Special Quota: freedom fighters / PWD / etc: *</legend>
+            {{ form.qouta_freedom }}
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Whether the student belongs to any community: *</legend>
+            {{ form.qouta_community }}
+          </fieldset> -->
+
+
         {% else %}
-          
           {% for field in form %}
             <div class="form-group">
               <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -235,9 +299,6 @@
           {% endfor %}
         {% endif %}
 
-
-        
-
       </div>
 
       <div class="form-actions">
@@ -251,7 +312,6 @@
           >
             Previous
           </button>
-
         {% endif %}
         <button class="btn btn-next" type="submit">
           {% if wizard.steps.next %}Next{% else %}Submit{% endif %}
@@ -261,30 +321,80 @@
   </div>
 
   <script>
-document.addEventListener('DOMContentLoaded', function(){
-  const sel    = document.getElementById('id_guardian');
+document.addEventListener('DOMContentLoaded', function() {
+  // Guardian “Other” toggle
+  const sel = document.getElementById('id_guardian');
   const extras = document.querySelector('.guardian-extra');
-  const fields = extras.querySelectorAll('input, select, textarea');
+  const fields = extras ? extras.querySelectorAll('input, select, textarea') : [];
 
-  if (!sel || !extras) return;
-
-  function toggle() {
-    const isOther = sel.value === 'Other';
-    extras.style.display = isOther ? 'grid' : 'none';
-
-    fields.forEach(f => {
-      // disable them when not “Other” so browser skips validation
-      f.disabled = !isOther;
-      // toggle the HTML5 required *property*
-      f.required = isOther;
-    });
+  if (sel && extras) {
+    function toggleGuardianFields() {
+      const isOther = sel.value === 'Other';
+      extras.style.display = isOther ? 'grid' : 'none';
+      fields.forEach(f => {
+        f.disabled = !isOther;
+        f.required = isOther;
+      });
+    }
+    sel.addEventListener('change', toggleGuardianFields);
+    toggleGuardianFields();
   }
 
-  sel.addEventListener('change', toggle);
-  toggle();  // initialize on page‐load
+  // Permanent address sync logic
+  const sameCheckbox = document.getElementById('same-as-present');
+
+  if (sameCheckbox) {
+    // Present address fields
+    const presentFields = {
+      wardNo: document.getElementById('{{ form.wardNo.id_for_label }}'),
+      postOffice: document.getElementById('{{ form.postOffice.id_for_label }}'),
+      policeStation: document.getElementById('{{ form.policeStation.id_for_label }}'),
+      district: document.getElementById('{{ form.district.id_for_label }}'),
+      postal_code: document.getElementById('{{ form.postal_code.id_for_label }}'),
+    };
+
+    // Permanent address fields
+    const permanentFields = {
+      wardNo: document.getElementById('{{ form.permanent_wardNo.id_for_label }}'),
+      postOffice: document.getElementById('{{ form.permanent_postOffice.id_for_label }}'),
+      policeStation: document.getElementById('{{ form.permanent_policeStation.id_for_label }}'),
+      district: document.getElementById('{{ form.permanent_district.id_for_label }}'),
+      postal_code: document.getElementById('{{ form.permanent_postal_code.id_for_label }}'),
+    };
+
+    function copyPresentToPermanent() {
+      if (sameCheckbox.checked) {
+        for (const key in presentFields) {
+          if (presentFields[key] && permanentFields[key]) {
+            permanentFields[key].value = presentFields[key].value;
+          }
+        }
+      }
+    }
+
+    // Initial copy on page load if checked
+    if (sameCheckbox.checked) {
+      copyPresentToPermanent();
+    }
+
+    // Copy on checkbox toggle
+    sameCheckbox.addEventListener('change', () => {
+      if (sameCheckbox.checked) {
+        copyPresentToPermanent();
+      }
+    });
+
+    // Live sync while typing in present fields if checked
+    Object.values(presentFields).forEach(input => {
+      input.addEventListener('input', () => {
+        if (sameCheckbox.checked) {
+          copyPresentToPermanent();
+        }
+      });
+    });
+  }
 });
 </script>
-
 
 </body>
 </html>
