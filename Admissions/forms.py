@@ -1,5 +1,5 @@
 from django import forms
-from .models import HscAdmissionScience, ParentInfo, Address, AcademicInformation, Payment, HscSession
+from .models import HscAdmissionScience, ParentInfo, Address, AcademicInformation, Payment, HscScienceSubjects
 
 # class HscSessionForm(forms.ModelForm):
 #     class Meta:
@@ -83,6 +83,8 @@ class AcademicInformationForm(forms.ModelForm):
         widgets = {
           'ssc_session': forms.Select(attrs={'class':'form-control'}),
         }
+
+
 
 
 class PaymentForm(forms.ModelForm):

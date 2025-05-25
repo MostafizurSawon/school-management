@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'formtools',
+    'widget_tweaks',
     'UserProfiles',
     'Admissions',
     'StudentsInfos',
@@ -89,13 +90,17 @@ WSGI_APPLICATION = 'Education_project.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'jbditlabs_education',
-#         'USER': 'jbditlabs_sawon',
+#         'NAME': 'androidsms_education_college',
+#         'USER': 'androidsms_edu',
 #         'PASSWORD': '31012011@Sa',
-#         'HOST': 'https://host44.registrar-servers.com/',
-#         'Port': '3306'
+#         'HOST': 'server1.jbdit.com.bd',  
+#         'PORT': '3306',   
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },               
 #     }
 # }
+
 
 # Database
 DATABASES = {

@@ -21,6 +21,8 @@ class HscScienceSubjects(models.Model):
     subject_name = models.CharField(max_length=30)
     subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
     is_main = models.BooleanField(default=False)
+    is_first = models.BooleanField(default=False)
+    is_elective = models.BooleanField(default=False)
     fourth = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 

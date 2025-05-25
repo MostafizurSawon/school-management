@@ -68,3 +68,6 @@ class AdmissionWizard(SessionWizardView):
         payment.save()
 
         return redirect("admission_success")
+
+
+

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Address Section Example</title>
+<style>
+  body {
+    background: #f3f4f6;
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 20px;
+  }
+  .container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  .section-header h2 {
+    font-size: 1.4rem;
+    color: #1f2937;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+  }
+  .address-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 24px;
+    align-items: flex-start;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+  }
+  .form-group label {
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #374151;
+  }
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group select {
+    padding: 10px 14px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #1e293b;
+    transition: border-color 0.2s ease-in-out;
+  }
+  .form-group input[type="text"]:focus,
+  .form-group input[type="number"]:focus,
+  .form-group select:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(59 130 246 / 0.3);
+  }
+  input[type="checkbox"]#same-as-present {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  fieldset.form-group {
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    background-color: #f9fafb;
+  }
+  fieldset.form-group legend {
+    font-weight: 700;
+    padding: 0 6px;
+    color: #1e293b;
+    font-size: 1.1rem;
+  }
+  fieldset.form-group label {
+    font-weight: 500;
+    margin-right: 20px;
+    cursor: pointer;
+    color: #2563eb;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <form id="admission-form">
+
+      <div class=""><h2>Present Address</h2></div>
+
+          <div class="form-group">
+            <label for="{{ form.wardNo.id_for_label }}">Village/Mohalla/Ward No.: *</label>
+            {{ form.wardNo }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.postOffice.id_for_label }}">Post Office: *</label>
+            {{ form.postOffice }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.policeStation.id_for_label }}">Police Station: *</label>
+            {{ form.policeStation }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.district.id_for_label }}">District: *</label>
+            {{ form.district }}
+          </div>
+          <div class="form-group">
+            <label for="{{ form.postal_code.id_for_label }}">Postal Code: *</label>
+            {{ form.postal_code }}
+          </div>
+
+          <fieldset class="form-group">
+            <label>
+              <input type="checkbox" id="same-as-present" />
+              Permanent Address same
+            </label>
+          </fieldset>
+
+          <div id="permanent-address-fields">
+            <div class="section-header"><h2>Permanent Address</h2></div>
+
+            <div class="form-group">
+              <label for="{{ form.permanent_wardNo.id_for_label }}">Village/Mohalla/Ward No.: *</label>
+              {{ form.permanent_wardNo }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.permanent_postOffice.id_for_label }}">Post Office: *</label>
+              {{ form.permanent_postOffice }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.permanent_policeStation.id_for_label }}">Police Station: *</label>
+              {{ form.permanent_policeStation }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.permanent_district.id_for_label }}">District: *</label>
+              {{ form.permanent_district }}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.permanent_postal_code.id_for_label }}">Postal Code: *</label>
+              {{ form.permanent_postal_code }}
+            </div>
+          </div>
+
+       <fieldset class="form-group">
+            <legend>Special Quota: freedom fighters / PWD / etc: *</legend>
+            <label><input type="radio" name="qouta_freedom" value="True" {% if form.qouta_freedom.value == True %}checked{% endif %}> Yes</label>
+            <label><input type="radio" name="qouta_freedom" value="False" {% if form.qouta_freedom.value == False %}checked{% endif %}> No</label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Whether the student belongs to any community: *</legend>
+            <label><input type="radio" name="qouta_community" value="True" {% if form.qouta_community.value == True %}checked{% endif %}> Yes</label>
+            <label><input type="radio" name="qouta_community" value="False" {% if form.qouta_community.value == False %}checked{% endif %}> No</label>
+          </fieldset>
+
+    </form>
+  </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sameCheckbox = document.getElementById('same-as-present');
+
+  // Map inputs
+  const presentFields = {
+    wardNo: document.getElementById('wardNo'),
+    postOffice: document.getElementById('postOffice'),
+    policeStation: document.getElementById('policeStation'),
+    district: document.getElementById('district'),
+    postal_code: document.getElementById('postal_code'),
+  };
+  const permanentFields = {
+    wardNo: document.getElementById('permanent_wardNo'),
+    postOffice: document.getElementById('permanent_postOffice'),
+    policeStation: document.getElementById('permanent_policeStation'),
+    district: document.getElementById('permanent_district'),
+    postal_code: document.getElementById('permanent_postal_code'),
+  };
+
+  function copyPresentToPermanent() {
+    if (sameCheckbox.checked) {
+      for (const key in presentFields) {
+        if (presentFields[key] && permanentFields[key]) {
+          permanentFields[key].value = presentFields[key].value;
+        }
+      }
+    }
+  }
+
+  if (sameCheckbox.checked) {
+    copyPresentToPermanent();
+  }
+
+  sameCheckbox.addEventListener('change', () => {
+    if (sameCheckbox.checked) {
+      copyPresentToPermanent();
+    }
+  });
+
+  Object.values(presentFields).forEach(input => {
+    input.addEventListener('input', () => {
+      if (sameCheckbox.checked) {
+        copyPresentToPermanent();
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

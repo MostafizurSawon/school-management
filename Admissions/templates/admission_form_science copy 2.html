@@ -1,0 +1,365 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admission Form for Science</title>
+  <!-- Bootstrap 5 CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #f8f9fa; /* Bootstrap light gray */
+      font-family: Arial, sans-serif;
+      padding: 30px 15px;
+    }
+    .container {
+      max-width: 1200px;
+      background: #fff;
+      padding: 30px 40px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
+    }
+    /* Stepper nav custom */
+    .wizard-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+    .wizard-nav .step {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #6c757d;
+      background-color: #e9ecef;
+      cursor: default;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .wizard-nav .step.active {
+      background-color: #0d6efd;
+      color: white;
+      font-weight: 700;
+    }
+    /* For spacing the last step nicely */
+    .wizard-nav .step:last-child {
+      flex: 1.1;
+    }
+    /* Form controls styling overrides for better spacing */
+    .form-label {
+      font-weight: 600;
+      color: #495057;
+    }
+    .form-control:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+    }
+    /* Guardian extra fields toggle container */
+    .guardian-extra {
+      display: none;
+    }
+    /* Radio groups styling */
+    .radio-group label {
+      cursor: pointer;
+      font-weight: 600;
+      color: #0d6efd;
+    }
+    /* Checkbox same as present */
+    #same-as-present {
+      cursor: pointer;
+    }
+    /* Permanent address border */
+    #permanent-address-fields {
+      border-top: 3px solid #0d6efd;
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="text-center mb-4">
+      <h1 class="fw-bold">Admission Form for Science</h1>
+      <p class="text-muted">Please fill the form step by step</p>
+    </div>
+
+    <!-- Stepper -->
+    <div class="wizard-nav">
+      <div class="step {% if wizard.steps.current == 'admission' %}active{% endif %}">1 Applicant Information</div>
+      <div class="step {% if wizard.steps.current == 'parent' %}active{% endif %}">2 Parent/Guardian Information</div>
+      <div class="step {% if wizard.steps.current == 'address' %}active{% endif %}">3 Address</div>
+      <div class="step {% if wizard.steps.current == 'academic' %}active{% endif %}">4 Academic Information</div>
+      <div class="step {% if wizard.steps.current == 'payment' %}active{% endif %}">5 Payment Information</div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      {{ wizard.management_form }}
+
+      <div class="row g-3">
+        {% if wizard.steps.current == 'parent' %}
+          {% for field in form %}
+            {% if field.name != 'guardian_name_english' and field.name != 'guardian_date_of_birth' and field.name != 'guardian_nid' and field.name != 'guardian_mobile' %}
+              <div class="col-md-6">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field|add_class:"form-control" }}
+                {% if field.help_text %}
+                  <div class="form-text">{{ field.help_text }}</div>
+                {% endif %}
+                {% if field.errors %}
+                  <div class="text-danger small mt-1">
+                    {% for e in field.errors %}{{ e }}<br>{% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+          <div class="guardian-extra row g-3 mt-3">
+            <div class="col-md-6">
+              <label for="{{ form.guardian_name_english.id_for_label }}" class="form-label">Guardian’s Name (English)</label>
+              {{ form.guardian_name_english|add_class:"form-control" }}
+              {% if form.guardian_name_english.errors %}
+                <div class="text-danger small mt-1">
+                  {% for e in form.guardian_name_english.errors %}{{ e }}<br>{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.guardian_date_of_birth.id_for_label }}" class="form-label">Guardian Date of Birth</label>
+              {{ form.guardian_date_of_birth|add_class:"form-control" }}
+              {% if form.guardian_date_of_birth.errors %}
+                <div class="text-danger small mt-1">
+                  {% for e in form.guardian_date_of_birth.errors %}{{ e }}<br>{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.guardian_nid.id_for_label }}" class="form-label">Guardian’s NID Number</label>
+              {{ form.guardian_nid|add_class:"form-control" }}
+              {% if form.guardian_nid.errors %}
+                <div class="text-danger small mt-1">
+                  {% for e in form.guardian_nid.errors %}{{ e }}<br>{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            <div class="col-md-6">
+              <label for="{{ form.guardian_mobile.id_for_label }}" class="form-label">Guardian’s Mobile Number</label>
+              {{ form.guardian_mobile|add_class:"form-control" }}
+              {% if form.guardian_mobile.errors %}
+                <div class="text-danger small mt-1">
+                  {% for e in form.guardian_mobile.errors %}{{ e }}<br>{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+        {% elif wizard.steps.current == 'address' %}
+          <div class="mb-3">
+            <h4 class="fw-semibold border-bottom border-primary pb-2 mb-3">Present Address</h4>
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label for="{{ form.wardNo.id_for_label }}" class="form-label">Village/Mohalla/Ward No.: *</label>
+                {{ form.wardNo|add_class:"form-control" }}
+              </div>
+              <div class="col-md-4">
+                <label for="{{ form.postOffice.id_for_label }}" class="form-label">Post Office: *</label>
+                {{ form.postOffice|add_class:"form-control" }}
+              </div>
+              <div class="col-md-4">
+                <label for="{{ form.policeStation.id_for_label }}" class="form-label">Police Station: *</label>
+                {{ form.policeStation|add_class:"form-control" }}
+              </div>
+              <div class="col-md-4">
+                <label for="{{ form.district.id_for_label }}" class="form-label">District: *</label>
+                {{ form.district|add_class:"form-control" }}
+              </div>
+              <div class="col-md-4">
+                <label for="{{ form.postal_code.id_for_label }}" class="form-label">Postal Code: *</label>
+                {{ form.postal_code|add_class:"form-control" }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="" id="same-as-present" />
+            <label class="form-check-label fw-semibold" for="same-as-present">
+              Same as Present Address
+            </label>
+          </div>
+
+          <div id="permanent-address-fields">
+            <h4 class="fw-semibold border-bottom border-primary pb-2 mb-3">Permanent Address</h4>
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label for="{{ form.permanent_wardNo.id_for_label }}" class="form-label">Village/Mohalla/Ward No.: *</label>
+                {{ form.permanent_wardNo|add_class:"form-control" }}
+              </div>
+              <div class="col-md-4">
+                <label for="{{ form.permanent_postOffice.id_for_label }}" class="form-label">Post Office: *</label>
+                {{ form.permanent_postOffice|add_class:"form-control" }}
+              </div>
+              <div class="col-md-4">
+                <label for="{{ form.permanent_policeStation.id_for_label }}" class="form-label">Police Station: *</label>
+                {{ form.permanent_policeStation|add_class:"form-control" }}
+              </div>
+              <div class="col-md-4">
+                <label for="{{ form.permanent_district.id_for_label }}" class="form-label">District: *</label>
+                {{ form.permanent_district|add_class:"form-control" }}
+              </div>
+              <div class="col-md-4">
+                <label for="{{ form.permanent_postal_code.id_for_label }}" class="form-label">Postal Code: *</label>
+                {{ form.permanent_postal_code|add_class:"form-control" }}
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="radio-group mt-4">
+            <legend class="fw-semibold">Special Quota: freedom fighters / PWD / etc: *</legend>
+            <div class="d-flex gap-4">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="qouta_freedom" id="quotaFreedomYes" value="True" {% if form.qouta_freedom.value == True %}checked{% endif %} />
+                <label class="form-check-label" for="quotaFreedomYes">Yes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="qouta_freedom" id="quotaFreedomNo" value="False" {% if form.qouta_freedom.value == False %}checked{% endif %} />
+                <label class="form-check-label" for="quotaFreedomNo">No</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="radio-group mt-3">
+            <legend class="fw-semibold">Whether the student belongs to any community: *</legend>
+            <div class="d-flex gap-4">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="qouta_community" id="quotaCommunityYes" value="True" {% if form.qouta_community.value == True %}checked{% endif %} />
+                <label class="form-check-label" for="quotaCommunityYes">Yes</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="qouta_community" id="quotaCommunityNo" value="False" {% if form.qouta_community.value == False %}checked{% endif %} />
+                <label class="form-check-label" for="quotaCommunityNo">No</label>
+              </div>
+            </div>
+          </fieldset>
+
+        {% else %}
+          {% for field in form %}
+            <div class="col-md-6">
+              <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+              {{ field|add_class:"form-control" }}
+              {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+              {% endif %}
+              {% if field.errors %}
+                <div class="text-danger small mt-1">
+                  {% for e in field.errors %}{{ e }}<br>{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="d-flex justify-content-end mt-4 gap-2">
+        {% if wizard.steps.prev %}
+          <button
+            name="wizard_goto_step"
+            value="{{ wizard.steps.prev }}"
+            type="submit"
+            class="btn btn-outline-secondary"
+            formnovalidate
+          >
+            Previous
+          </button>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">
+          {% if wizard.steps.next %}Next{% else %}Submit{% endif %}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Guardian “Other” toggle
+      const sel = document.getElementById('id_guardian');
+      const extras = document.querySelector('.guardian-extra');
+      const fields = extras ? extras.querySelectorAll('input, select, textarea') : [];
+
+      if (sel && extras) {
+        function toggleGuardianFields() {
+          const isOther = sel.value === 'Other';
+          extras.style.display = isOther ? 'flex' : 'none';
+          fields.forEach(f => {
+            f.disabled = !isOther;
+            f.required = isOther;
+          });
+        }
+        sel.addEventListener('change', toggleGuardianFields);
+        toggleGuardianFields();
+      }
+
+      // Permanent address sync logic
+      const sameCheckbox = document.getElementById('same-as-present');
+
+      if (sameCheckbox) {
+        const presentFields = {
+          wardNo: document.getElementById('{{ form.wardNo.id_for_label }}'),
+          postOffice: document.getElementById('{{ form.postOffice.id_for_label }}'),
+          policeStation: document.getElementById('{{ form.policeStation.id_for_label }}'),
+          district: document.getElementById('{{ form.district.id_for_label }}'),
+          postal_code: document.getElementById('{{ form.postal_code.id_for_label }}'),
+        };
+
+        const permanentFields = {
+          wardNo: document.getElementById('{{ form.permanent_wardNo.id_for_label }}'),
+          postOffice: document.getElementById('{{ form.permanent_postOffice.id_for_label }}'),
+          policeStation: document.getElementById('{{ form.permanent_policeStation.id_for_label }}'),
+          district: document.getElementById('{{ form.permanent_district.id_for_label }}'),
+          postal_code: document.getElementById('{{ form.permanent_postal_code.id_for_label }}'),
+        };
+
+        function copyPresentToPermanent() {
+          if (sameCheckbox.checked) {
+            for (const key in presentFields) {
+              if (presentFields[key] && permanentFields[key]) {
+                permanentFields[key].value = presentFields[key].value;
+              }
+            }
+          }
+        }
+
+        // Initial copy on page load if checked
+        if (sameCheckbox.checked) {
+          copyPresentToPermanent();
+        }
+
+        // Copy on checkbox toggle
+        sameCheckbox.addEventListener('change', () => {
+          if (sameCheckbox.checked) {
+            copyPresentToPermanent();
+          }
+        });
+
+        // Live sync while typing in present fields if checked
+        Object.values(presentFields).forEach(input => {
+          input.addEventListener('input', () => {
+            if (sameCheckbox.checked) {
+              copyPresentToPermanent();
+            }
+          });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
