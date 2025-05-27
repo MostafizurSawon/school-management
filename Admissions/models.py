@@ -3,9 +3,16 @@ from django.core.validators import RegexValidator
 
 numeric_validator = RegexValidator(r'^\d{11}$', 'Enter a valid 11-digit number.')
 
+class HscFeeType(models.Model):
+    fee_type = models.CharField(max_length=50, unique=True)
+    amount = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.fee_type} - {self.amount} BDT"
+
 class HscSession(models.Model):
     session = models.CharField(max_length=9, unique=True)
-    admission_fee = models.IntegerField(default=0)
+    fee = models.ForeignKey(HscFeeType, on_delete=models.CASCADE, related_name='hsc_sessions', null=True, blank=True)
 
     def __str__(self):
         return self.session
@@ -16,18 +23,38 @@ class SscSession(models.Model):
     def __str__(self):
         return self.session
 
-    
-class HscScienceSubjects(models.Model):
+
+class HscScienceCompulsorySubjects(models.Model):
     subject_name = models.CharField(max_length=30)
     subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
-    is_main = models.BooleanField(default=False)
-    is_first = models.BooleanField(default=False)
-    is_elective = models.BooleanField(default=False)
-    fourth = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.subject_name} ({self.is_active})"
+        return f"{self.subject_name} ({self.subject_code})"
+
+class HscScienceOptionalSubjects(models.Model):
+    subject_name = models.CharField(max_length=30)
+    subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.subject_name} ({self.subject_code})"
+
+class HscScienceMainSubjects(models.Model):
+    subject_name = models.CharField(max_length=30)
+    subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.subject_name} ({self.subject_code})"
+
+class HscScienceFourthSubjects(models.Model):
+    subject_name = models.CharField(max_length=30)
+    subject_code = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.subject_name} ({self.subject_code})"
 
 class HscAdmissionScience(models.Model):
     ssc_roll = models.IntegerField(unique=True)
@@ -122,7 +149,7 @@ class Address(models.Model):
 
 class AcademicInformation(models.Model):
     student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='academic_info')
-    ssc_board = models.CharField(max_length=20,choices=[
+    ssc_board = models.CharField(max_length=20, choices=[
         ('Dhaka', 'Dhaka'),
         ('Rajshahi', 'Rajshahi'),
         ('Comilla', 'Comilla'),
@@ -152,31 +179,21 @@ class AcademicInformation(models.Model):
     sscInstitution = models.CharField(max_length=100, null=True, blank=True)
     sscRoll = models.IntegerField(null=True, blank=True)
     sscReg = models.IntegerField(null=True, blank=True)
-    ssc_session = models.ForeignKey(
-        SscSession,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='academic_infos'
-    )
+    ssc_session = models.ForeignKey(SscSession, on_delete=models.SET_NULL, null=True, blank=True, related_name='academic_infos')
 
     sscGpa = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
-    
-    compulsory_bangla = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='compulsory_bangla')
-    compulsory_english = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='compulsory_english')
-    compulsory_ict = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='compulsory_ict')
 
-    elective_physics = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='elective_physics')
-    elective_chemistry = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='elective_chemistry')
-
-    main_subject = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='main_subject')  # biology or higher math
-    fourth_subject = models.ForeignKey(HscScienceSubjects, on_delete=models.SET_NULL, null=True, related_name='fourth_subject')
+    # Correcting the ForeignKey relations
+    compulsorySubjects = models.ManyToManyField(HscScienceCompulsorySubjects, related_name='academic_infos_compulsory')
+    optionalSubjects = models.ManyToManyField(HscScienceOptionalSubjects, related_name='academic_infos_optional')
+    mainSubjects = models.ForeignKey(HscScienceMainSubjects, on_delete=models.SET_NULL, null=True, blank=True, related_name='academic_infos_main')
+    FourSubjects = models.ForeignKey(HscScienceFourthSubjects, on_delete=models.SET_NULL, null=True, blank=True, related_name='academic_infos_four')
 
     def __str__(self):
         return f"Academic Info of {self.student.name}"
 
-    def __str__(self):
-        return f"Academic Info of {self.student.name}"
+
+
 
 class Payment(models.Model):
     student = models.OneToOneField(HscAdmissionScience, on_delete=models.CASCADE, related_name='payment')

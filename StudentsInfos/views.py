@@ -11,7 +11,14 @@ from Admissions.forms import (
     AcademicInformationForm, PaymentForm
 )
 
-import pdfkit
+# import pdfkit
+
+
+
+
+
+# from weasyprint import HTML
+
 
 # from weasyprint import HTML
 # import tempfile
@@ -26,11 +33,15 @@ def scienceStudents(request):
         # if provided, only students in that session
         students = HscAdmissionScience.objects.filter(
             hsc_session_id=session_id
+        ).select_related(
+            'hsc_session', 'parent_info', 'address', 'academic_info', 'payment'
         ).order_by('-id')
         selected_session = get_object_or_404(HscSession, id=session_id)
     else:
         # otherwise show all
-        students = HscAdmissionScience.objects.all().order_by('-id')
+        students = HscAdmissionScience.objects.all().select_related(
+            'hsc_session', 'parent_info', 'address', 'academic_info', 'payment'
+        ).order_by('-id')
         selected_session = None
 
     return render(request, 'science-students.html', {
@@ -39,50 +50,6 @@ def scienceStudents(request):
         'selected_session': selected_session,
     })
 
-
-
-# def generate_student_pdf(request, pk):
-#     student = get_object_or_404(HscAdmissionScience, pk=pk)
-#     html = render_to_string("student_pdf_template.html", {"student": student})
-
-#     config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
-
-#     pdf = pdfkit.from_string(html, False, configuration=config)
-
-#     response = HttpResponse(pdf, content_type='application/pdf')
-#     response['Content-Disposition'] = f'attachment; filename="student_{student.pk}.pdf"'
-#     return response
-
-
-
-
-# def generate_student_pdf(request, pk):
-#     student = get_object_or_404(HscAdmissionScience, pk=pk)
-
-#     html_string = render_to_string("student_pdf_template.html", {"student": student})
-    
-#     # Create a temporary PDF file
-#     response = HttpResponse(content_type='application/pdf')
-#     response['Content-Disposition'] = f'filename=student_{student.pk}.pdf'
-
-#     HTML(string=html_string, base_url=request.build_absolute_uri()).write_pdf(response)
-
-#     return response
-
-
-
-def generate_student_pdf(request, pk):
-    student = get_object_or_404(HscAdmissionScience, pk=pk)
-    html = render_to_string("student_pdf_template.html", {"student": student})
-
-    # Path to wkhtmltopdf binary (if not in PATH)
-    config = pdfkit.configuration(wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe')
-
-    pdf = pdfkit.from_string(html, False, configuration=config)
-
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="student_{student.pk}.pdf"'
-    return response
 
 
 
@@ -136,11 +103,27 @@ def deleteStudent(request, pk):
     return render(request, 'confirm_delete.html', {'student': student})
 
 
-
+# def generate_student_pdf(request, pk):
+#     student = get_object_or_404(HscAdmissionScience, pk=pk)
+#     html = render_to_string("student_pdf_template.html", {"student": student})
+#     response = HttpResponse(content_type="application/pdf")
+#     pisa.CreatePDF(html, dest=response)
+#     return response
 
 def generate_student_pdf(request, pk):
     student = get_object_or_404(HscAdmissionScience, pk=pk)
-    html = render_to_string("student_pdf_template.html", {"student": student})
-    response = HttpResponse(content_type="application/pdf")
-    pisa.CreatePDF(html, dest=response)
-    return response
+    parent = getattr(student, 'parentinfo', None)
+    address = getattr(student, 'address', None)
+    academic = getattr(student, 'academicinformation', None)
+    payment = getattr(student, 'payment', None)
+
+    context = {
+        'student': student,
+        'parent': parent,
+        'address': address,
+        'academic': academic,
+        'payment': payment,
+    }
+
+    return render(request, 'student_pdf_template.html', context)
+

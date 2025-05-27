@@ -1,143 +1,320 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en" x-data="{ open: true }" class="h-full">
+
 <head>
-    <meta charset="utf-8">
-    <title>Student Information PDF</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            font-size: 12px;
-            margin: 30px;
-            color: #000;
-        }
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0 30px;
-        }
-        th, td {
-            border: 1px solid #333;
-            padding: 5px;
-            text-align: left;
-        }
-        th {
-            background-color: #ddd;
-        }
-        img {
-            width: 60px;
-            height: auto;
-        }
-        .section-title {
-            background-color: #f0f0f0;
-            padding: 6px;
-            margin-top: 20px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>College Management - Admission Info</title>
+    <link rel="shortcut icon" href="{% static 'images/logo/favicon.png' %}" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://kit.fontawesome.com/8d42debf19.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
-<body>
 
-<h1>Pochamaria Degree College</h1>
-<h2>HSC Science Admission - Student Profile</h2>
+<body class="w-full">
 
-<!-- 1. Personal Information -->
-<div class="section-title">1. Personal Information</div>
-<table>
-    <tr><th>Name</th><td>{{ student.name }}</td>
-        <th>SSC Roll</th><td>{{ student.ssc_roll }}</td></tr>
-    <tr><th>Class Roll</th><td>{{ student.class_roll }}</td>
-        <th>Merit Position</th><td>{{ student.merit_position }}</td></tr>
-    <tr><th>Mobile</th><td>{{ student.mobile }}</td>
-        <th>Blood Group</th><td>{{ student.blood_group }}</td></tr>
-    <tr><th>Birth Certificate No</th><td>{{ student.birth_certificate_no }}</td>
-        <th>Birthdate</th><td>{{ student.birthdate }}</td></tr>
-    <tr><th>Marital Status</th><td>{{ student.marital_status }}</td>
-        <th>Gender</th><td>{{ student.gender }}</td></tr>
-    <tr><th>Nationality</th><td>{{ student.nationality }}</td>
-        <th>Religion</th><td>{{ student.religion }}</td></tr>
-    <tr>
-        <th>Photoo</th>
-            <td colspan="3"><img src="{{ student.photo.url }}" /></td>
+    <div class="py-10 mx-auto max-w-7xl">
+        <!-- header part -->
+        <div class="grid grid-cols-3 justify-center items-center bg-white pb-5">
+            <!-- left -->
+            <div class="flex justify-start items-center">
+                <img src="{% static 'logos/PDCLOGO.png' %}" alt="Logo" class="w-auto h-40" />
+            </div>
+            <!-- middle -->
+            <div class="flex flex-col justify-center space-y-3 items-center">
+                <h1 class="text-4xl whitespace-nowrap font-bold text-center">পচামাড়িয়া ডিগ্রী কলেজ</h1>
+                <p class="text-center text-sm text-white bg-blue-400 inline px-5 py-2">ভর্তির আবেদন ফরম</p>
+            </div>
+            <!-- right -->
+            <div class="avatar flex justify-end items-center">
+                <div class="w-40 h-40 object-cover rounded">
+                    {% if student.photo %}
+                    <img src="{{ student.photo.url }}" alt="{{ student.name }}" />
+                    {% else %}
+                    <img src="{% static 'images/default-avatar.png' %}" alt="Default Avatar" />
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
+        <div class="grid grid-cols-3 w-full">
+            <div class="flex justify-center items-center text-center">
+                <p class="border border-b-0 border-gray-400 w-full p-2">EIIN: 127017</p>
+            </div>
+            <div class="flex justify-center items-center">
+                <p class="text-lg font-bold">GROUP OF SCIENCE</p>
+            </div>
+            <div class="flex justify-end items-center text-center">
+                <p class="border border-b-0 border-gray-400 w-full p-2">
+                    Application Date: {{ student.hsc_session.session }}
+                </p>
+            </div>
+        </div>
 
-    </tr>
-</table>
+        <!-- Applicant Information -->
+        <div class="col-span-4 border border-gray-400 mt-4">
+            <h1 class="p-2 font-bold text-lg">Applicant Information</h1>
+        </div>
 
-<!-- 2. Parent Information -->
-<div class="section-title">2. Parent Information</div>
-<table>
-    <tr><th>Father's Name</th><td>{{ student.parent_info.fathers_name_english }}</td>
-        <th>NID</th><td>{{ student.parent_info.fathers_nid }}</td></tr>
-    <tr><th>DOB</th><td>{{ student.parent_info.fathers_date_of_birth }}</td>
-        <th>Mobile</th><td>{{ student.parent_info.fathers_mobile }}</td></tr>
-    <tr><th>Occupation</th><td>{{ student.parent_info.father_occupation }}</td>
-        <th>Monthly Income</th><td>{{ student.parent_info.fathers_monthly_income }}</td></tr>
-    <tr><th>Mother's Name</th><td>{{ student.parent_info.mother_name_english }}</td>
-        <th>NID</th><td>{{ student.parent_info.mothers_nid }}</td></tr>
-    <tr><th>DOB</th><td>{{ student.parent_info.mothers_date_of_birth }}</td>
-        <th>Mobile</th><td>{{ student.parent_info.mothers_mobile }}</td></tr>
-    <tr><th>Occupation</th><td>{{ student.parent_info.mother_occupation }}</td>
-        <th>Monthly Income</th><td>{{ student.parent_info.mothers_monthly_income }}</td></tr>
-    <tr><th>Guardian</th><td>{{ student.parent_info.guardian }}</td>
-        <th>Name</th><td>{{ student.parent_info.guardian_name_english }}</td></tr>
-    <tr><th>NID</th><td>{{ student.parent_info.guardian_nid }}</td>
-        <th>DOB</th><td>{{ student.parent_info.guardian_date_of_birth }}</td></tr>
-    <tr><th>Mobile</th><td colspan="3">{{ student.parent_info.guardian_mobile }}</td></tr>
-</table>
+        <div class="overflow-hidden">
+            <div class="bg-gray-300 font-bold p-2 border-b border-gray-400">Applicant Information</div>
+            <div class="grid grid-cols-4 gap-0 text-sm">
+                <div class="border border-gray-300 p-2 font-semibold">Student's Name (English):</div>
+                <div class="border border-gray-300 p-2">{{ student.name }}</div>
 
-<!-- 3. Address Information -->
-<div class="section-title">3. Address Information</div>
-<table>
-    <tr><th>Present Ward No</th><td>{{ student.address.wardNo }}</td>
-        <th>Post Office</th><td>{{ student.address.postOffice }}</td></tr>
-    <tr><th>Police Station</th><td>{{ student.address.policeStation }}</td>
-        <th>District</th><td>{{ student.address.district }}</td></tr>
-    <tr><th>Postal Code</th><td>{{ student.address.postal_code }}</td>
-        <th>Permanent Same?</th><td>{{ student.address.permanent_address_same }}</td></tr>
-    <tr><th>Permanent Ward</th><td>{{ student.address.permanent_wardNo }}</td>
-        <th>Post Office</th><td>{{ student.address.permanent_postOffice }}</td></tr>
-    <tr><th>Police Station</th><td>{{ student.address.permanent_policeStation }}</td>
-        <th>District</th><td>{{ student.address.permanent_district }}</td></tr>
-    <tr><th>Postal Code</th><td>{{ student.address.permanent_postal_code }}</td>
-        <th>Freedom Quota</th><td>{{ student.address.qouta_freedom }}</td></tr>
-    <tr><th>Community Quota</th><td colspan="3">{{ student.address.qouta_community }}</td></tr>
-</table>
+                <div class="border border-gray-300 p-2 font-semibold">Class Roll:</div>
+                <div class="border border-gray-300 p-2">{{ student.class_roll }}</div>
 
-<!-- 4. Academic Information -->
-<div class="section-title">4. Academic Information</div>
-<table>
-    <tr><th>Board</th><td>{{ student.academic_info.ssc_board }}</td>
-        <th>Year</th><td>{{ student.academic_info.ssc_year }}</td></tr>
-    <tr><th>Roll</th><td>{{ student.academic_info.sscRoll }}</td>
-        <th>Reg</th><td>{{ student.academic_info.sscReg }}</td></tr>
-    <tr><th>Session</th><td>{{ student.academic_info.sscSession }}</td>
-        <th>GPA</th><td>{{ student.academic_info.sscGpa }}</td></tr>
-    <tr><th>Institution</th><td colspan="3">{{ student.academic_info.sscInstitution }}</td></tr>
-    <tr><th>Bangla</th><td>{{ student.academic_info.compulsory_bangla }}</td>
-        <th>English</th><td>{{ student.academic_info.compulsory_english }}</td></tr>
-    <tr><th>ICT</th><td>{{ student.academic_info.compulsory_ict }}</td>
-        <th>Physics</th><td>{{ student.academic_info.elective_physics }}</td></tr>
-    <tr><th>Chemistry</th><td>{{ student.academic_info.elective_chemistry }}</td>
-        <th>Main Subject</th><td>{{ student.academic_info.main_subject }}</td></tr>
-    <tr><th>Fourth Subject</th><td colspan="3">{{ student.academic_info.fourth_subject }}</td></tr>
-</table>
+                <div class="border border-gray-300 p-2 font-semibold">Student's Name (Bangla):</div>
+                <div class="border border-gray-300 p-2 col-span-3">&nbsp;</div>
 
-<!-- 5. Payment Information -->
-<div class="section-title">5. Payment Information</div>
-<table>
-    <tr><th>Method</th><td>{{ student.payment.method }}</td>
-        <th>Amount</th><td>{{ student.payment.amount }}</td></tr>
-    <tr><th>Transaction ID</th><td>{{ student.payment.transaction_id }}</td>
-        <th>Status</th><td>{{ student.payment.status }}</td></tr>
-    <tr><th>Payment Date</th><td>{{ student.payment.payment_date }}</td>
-        <th>Receipt No</th><td>{{ student.payment.receipt_number }}</td></tr>
-</table>
+                <div class="border border-gray-300 p-2 font-semibold">SSC Roll:</div>
+                <div class="border border-gray-300 p-2">{{ student.ssc_roll }}</div>
 
+                <div class="border border-gray-300 p-2 font-semibold">Merit Position:</div>
+                <div class="border border-gray-300 p-2">{{ student.merit_position|default:"-" }}</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Student's Mobile Number:</div>
+                <div class="border border-gray-300 p-2">{{ student.mobile }}</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Blood Group:</div>
+                <div class="border border-gray-300 p-2">{{ student.blood_group }}</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Birth Certificate/NID Card:</div>
+                <div class="border border-gray-300 p-2">{{ student.birth_certificate_no }}</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Date of Birth:</div>
+                <div class="border border-gray-300 p-2">{{ student.birthdate }}</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Marital Status:</div>
+                <div class="border border-gray-300 p-2">{{ student.marital_status }}</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Age:</div>
+                <div class="border border-gray-300 p-2">
+                </div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Gender:</div>
+                <div class="border border-gray-300 p-2">{{ student.gender }}</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Religion:</div>
+                <div class="border border-gray-300 p-2">{{ student.religion }}</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Email:</div>
+                <div class="border border-gray-300 p-2">&nbsp;</div>
+
+                <div class="border border-gray-300 p-2 font-semibold">Nationality:</div>
+                <div class="border border-gray-300 p-2">{{ student.nationality }}</div>
+            </div>
+
+            <!-- Parent/Guardian Information -->
+            <div class="border border-gray-400 overflow-hidden mt-1">
+                <div class="bg-gray-300 font-bold p-2 border-b border-gray-400">Parent/Guardian Information</div>
+                <div class="grid grid-cols-4 gap-0 text-sm">
+                    <div class="border border-gray-300 p-2 font-semibold">Father's Name (English):</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.fathers_name_english }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Father's NID Number:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.fathers_nid }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Father's Mobile Number:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.fathers_mobile }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Father's Date of Birth:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.fathers_date_of_birth }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Father's Monthly Income:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.fathers_monthly_income }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Father's Occupation:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.father_occupation }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Mother's Name (English):</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.mother_name_english }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Mother's NID Number:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.mothers_nid }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Mother's Mobile Number:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.mothers_mobile }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Mother's Date of Birth:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.mothers_date_of_birth }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Mother's Monthly Income:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.mothers_monthly_income }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Mother's Occupation:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.mother_occupation }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Guardian:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.guardian }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Guardian's NID:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.guardian_nid }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Guardian's Name (English):</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.guardian_name_english }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Guardian's Mobile:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.guardian_mobile }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Guardian's Date of Birth:</div>
+                    <div class="border border-gray-300 p-2">{{ student.parent_info.guardian_date_of_birth }}</div>
+                </div>
+            </div>
+
+            <!-- Present Address -->
+            <div class="border border-gray-400 overflow-hidden mt-1">
+                <div class="bg-gray-300 font-bold p-2 border-b border-gray-400">Present Address</div>
+                <div class="grid grid-cols-4 gap-0 text-sm">
+                    <div class="border border-gray-300 p-2 font-semibold">Village/Mohalla/Ward No:</div>
+                    <div class="border border-gray-300 p-2">{{ student.address.wardNo }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Post Office:</div>
+                    <div class="border border-gray-300 p-2">{{ student.address.postOffice }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Police Station:</div>
+                    <div class="border border-gray-300 p-2">{{ student.address.policeStation }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">District:</div>
+                    <div class="border border-gray-300 p-2">{{ student.address.district }}</div>
+                </div>
+            </div>
+
+            <!-- Permanent Address -->
+            <div class="border border-gray-400 overflow-hidden mt-1">
+                <div class="bg-gray-300 font-bold p-2 border-b border-gray-400">Permanent Address</div>
+                <div class="grid grid-cols-4 gap-0 text-sm">
+                    <div class="border border-gray-300 p-2 font-semibold">Village/Mohalla/Ward No:</div>
+                    <div class="border border-gray-300 p-2">{{ student.address.permanent_wardNo }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Post Office:</div>
+                    <div class="border border-gray-300 p-2">{{ student.address.permanent_postOffice }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Police Station:</div>
+                    <div class="border border-gray-300 p-2">{{ student.address.permanent_policeStation }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">District:</div>
+                    <div class="border border-gray-300 p-2">{{ student.address.permanent_district }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Special Quota:</div>
+                    <div class="border border-gray-300 p-2">
+                        {% if student.address.qouta_freedom %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Community:</div>
+                    <div class="border border-gray-300 p-2">
+                        {% if student.address.qouta_community %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Information -->
+            <div class="border border-gray-400 overflow-hidden mt-1">
+                <div class="bg-gray-300 font-bold p-2 border-b border-gray-400">Academic Information</div>
+                <div class="grid grid-cols-8 gap-0 text-sm">
+                    <div class="border border-gray-300 p-2 font-semibold">SSC Board:</div>
+                    <div class="border border-gray-300 p-2">{{ student.academic_info.ssc_board }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Passing Year:</div>
+                    <div class="border border-gray-300 p-2">{{ student.academic_info.ssc_year }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Institute:</div>
+                    <div class="border border-gray-300 p-2 col-span-3">{{ student.academic_info.sscInstitution }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">SSC Roll:</div>
+                    <div class="border border-gray-300 p-2">{{ student.academic_info.sscRoll }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">SSC Registration:</div>
+                    <div class="border border-gray-300 p-2">{{ student.academic_info.sscReg }}</div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">SSC Session:</div>
+                    <div class="border border-gray-300 p-2">
+                      {% if student.academic_info.ssc_session %}
+                        {{ student.academic_info.ssc_session.session }}
+                      {% else %}
+                        &nbsp;
+                      {% endif %}
+                    </div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">SSC GPA:</div>
+                    <div class="border border-gray-300 p-2">{{ student.academic_info.sscGpa }}</div>
+                </div>
+            </div>
+
+            <!-- Subject Choice Information -->
+            <div class="border border-gray-400 overflow-hidden mt-1">
+                <div class="bg-gray-300 font-bold p-2 border-b border-gray-400">Subject Choice Information</div>
+                <div class="grid grid-cols-4 gap-0 text-sm">
+                    <div class="border border-gray-300 p-2 font-semibold">Main Subjects:</div>
+                    <div class="border border-gray-300 p-2">
+                      {% if student.academic_info.mainSubjects %}
+                        {{ student.academic_info.mainSubjects.subject_name }}
+                      {% else %}
+                        &nbsp;
+                      {% endif %}
+                    </div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">4th Subjects:</div>
+                    <div class="border border-gray-300 p-2">
+                      {% if student.academic_info.FourSubjects %}
+                        {{ student.academic_info.FourSubjects.subject_name }}
+                      {% else %}
+                        &nbsp;
+                      {% endif %}
+                    </div>
+
+                    <div class="border border-gray-300 p-2 font-semibold">Elective Subjects:</div>
+                    <div class="border border-gray-300 p-2 col-span-3">
+                      {% if student.academic_info.optionalSubjects %}
+                        {{ student.academic_info.optionalSubjects.subject_name }}
+                      {% else %}
+                        &nbsp;
+                      {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signatures -->
+            <div class="grid grid-cols-3 items-center text-center mt-10">
+                <div class="flex flex-col justify-center items-center">
+                    <div class="avatar flex justify-end items-center mb-2">
+                        <div class="w-auto h-24 object-cover rounded">
+                            <!-- You can replace with signature images if available -->
+                            <img src="{% static 'images/signature-placeholder.png' %}" alt="Applicant Signature" />
+                        </div>
+                    </div>
+                    <div class="border-t-2 w-48 mx-auto"></div>
+                    <p class="mt-1">Applicant's Signature</p>
+                </div>
+                <div></div>
+                <div class="flex flex-col justify-center items-center">
+                    <div class="avatar flex justify-end items-center mb-2">
+                        <div class="w-auto h-24 object-cover rounded">
+                            <!-- You can replace with signature images if available -->
+                            <img src="{% static 'images/signature-placeholder.png' %}" alt="Principal Signature" />
+                        </div>
+                    </div>
+                    <div class="border-t-2 w-48 mx-auto"></div>
+                    <p class="mt-1">Principal's Signature</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <p class="text-sm text-gray-600">Education Management System - Designed & Developed by JBD IT.</p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

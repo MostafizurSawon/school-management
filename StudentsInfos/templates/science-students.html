@@ -101,23 +101,8 @@
     <a href="{% url 'user_logout' %}" class="btn-danger">Log Out</a>
 </div>
 <br>
-<!-- session filter bar -->
-<!-- <div class="btn-bar" style="margin-bottom:1rem;">
-  <strong>Filter by Session:</strong>
-  <a href="{% url 'science_students' %}" 
-     class="btn-primary {% if not selected_session %}active{% endif %}">
-    All
-  </a>
 
-  {% for sess in sessions %}
-    <a href="?session={{ sess.id }}"
-       class="btn-primary {% if selected_session and sess.id == selected_session.id %}active{% endif %}">
-      {{ sess.session }}
-    </a>
-  {% endfor %}
-</div> -->
-
-<!-- session filter dropdown -->
+<!-- Session filter dropdown -->
 <form method="get" id="session-filter-form" style="margin-bottom:1.5rem; text-align:center;">
   <label for="session-select" style="font-weight:bold; margin-right:0.5rem;">
     Filter by Session:
@@ -136,7 +121,6 @@
     {% endfor %}
   </select>
 </form>
-
 
 <br>
 <h1>HSC Science Admission - All Students Info</h1>
@@ -187,7 +171,7 @@
             </td>
         </tr>
         {% empty %}
-        <tr><td colspan="14">No students found.</td></tr>
+        <tr><td colspan="15">No students found.</td></tr>
         {% endfor %}
     </tbody>
 </table>
@@ -235,8 +219,7 @@
             <td>{{ student.parent_info.guardian_name_english }}</td>
             <td>{{ student.parent_info.guardian_nid }}</td>
             <td>{{ student.parent_info.guardian_date_of_birth }}</td>
-            <td>{{ student.parent_info.guardian_mobile }}
-            </td>
+            <td>{{ student.parent_info.guardian_mobile }}</td>
         </tr>
         {% empty %}
         <tr><td colspan="17">No parent info found.</td></tr>
@@ -272,14 +255,14 @@
             <td>{{ student.address.policeStation }}</td>
             <td>{{ student.address.district }}</td>
             <td>{{ student.address.postal_code }}</td>
-            <td>{{ student.address.permanent_address_same }}</td>
+            <td>{% if student.address.permanent_address_same %}Yes{% else %}No{% endif %}</td>
             <td>{{ student.address.permanent_wardNo }}</td>
             <td>{{ student.address.permanent_postOffice }}</td>
             <td>{{ student.address.permanent_policeStation }}</td>
             <td>{{ student.address.permanent_district }}</td>
             <td>{{ student.address.permanent_postal_code }}</td>
-            <td>{{ student.address.qouta_freedom }}</td>
-            <td>{{ student.address.qouta_community }}</td>
+            <td>{% if student.address.qouta_freedom %}Yes{% else %}No{% endif %}</td>
+            <td>{% if student.address.qouta_community %}Yes{% else %}No{% endif %}</td>
         </tr>
         {% empty %}
         <tr><td colspan="13">No address info found.</td></tr>
@@ -299,11 +282,8 @@
             <th>SSC Session</th>
             <th>SSC GPA</th>
             <th>Institution</th>
-            <th>Bangla</th>
-            <th>English</th>
-            <th>ICT</th>
-            <th>Physics</th>
-            <th>Chemistry</th>
+            <th>Compulsory Subject</th>
+            <th>Optional Subject</th>
             <th>Main Subject</th>
             <th>Fourth Subject</th>
         </tr>
@@ -315,19 +295,16 @@
             <td>{{ student.academic_info.ssc_year }}</td>
             <td>{{ student.academic_info.sscRoll }}</td>
             <td>{{ student.academic_info.sscReg }}</td>
-            <td>{{ student.academic_info.sscSession }}</td>
+            <td>{% if student.academic_info.ssc_session %}{{ student.academic_info.ssc_session.session }}{% else %}-{% endif %}</td>
             <td>{{ student.academic_info.sscGpa }}</td>
             <td>{{ student.academic_info.sscInstitution }}</td>
-            <td>{{ student.academic_info.compulsory_bangla }}</td>
-            <td>{{ student.academic_info.compulsory_english }}</td>
-            <td>{{ student.academic_info.compulsory_ict }}</td>
-            <td>{{ student.academic_info.elective_physics }}</td>
-            <td>{{ student.academic_info.elective_chemistry }}</td>
-            <td>{{ student.academic_info.main_subject }}</td>
-            <td>{{ student.academic_info.fourth_subject }}</td>
+            <td>{% if student.academic_info.compulsorySubjects %}{{ student.academic_info.compulsorySubjects.subject_name }}{% else %}-{% endif %}</td>
+            <td>{% if student.academic_info.optionalSubjects %}{{ student.academic_info.optionalSubjects.subject_name }}{% else %}-{% endif %}</td>
+            <td>{% if student.academic_info.mainSubjects %}{{ student.academic_info.mainSubjects.subject_name }}{% else %}-{% endif %}</td>
+            <td>{% if student.academic_info.FourSubjects %}{{ student.academic_info.FourSubjects.subject_name }}{% else %}-{% endif %}</td>
         </tr>
         {% empty %}
-        <tr><td colspan="14">No academic info found.</td></tr>
+        <tr><td colspan="11">No academic info found.</td></tr>
         {% endfor %}
     </tbody>
 </table>

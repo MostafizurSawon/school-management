@@ -250,7 +250,123 @@
           </div>
         </fieldset>
 
-      
+      {% elif wizard.steps.current == 'academic' %}
+<h4 class="fw-semibold border-bottom border-primary pb-2 mb-3">SSC Educational Information</h4>
+<div class="row g-3 mb-3">
+    <div class="col-md-3">
+        <label for="{{ form.ssc_board.id_for_label }}" class="form-label">SSC Board *</label>
+        {{ form.ssc_board|add_class:"form-select"|attr:"required" }}
+        {% if form.ssc_board.errors %}
+            <div class="text-danger small mt-1">
+                {% for e in form.ssc_board.errors %}{{ e }}<br>{% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-md-3">
+        <label for="{{ form.ssc_year.id_for_label }}" class="form-label">SSC Passing Year *</label>
+        {{ form.ssc_year|add_class:"form-select"|attr:"required" }}
+        {% if form.ssc_year.errors %}
+            <div class="text-danger small mt-1">
+                {% for e in form.ssc_year.errors %}{{ e }}<br>{% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-md-3">
+        <label for="{{ form.sscInstitution.id_for_label }}" class="form-label">Institute Name *</label>
+        {{ form.sscInstitution|add_class:"form-control" }}
+    </div>
+    <div class="col-md-3">
+        <label for="{{ form.sscRoll.id_for_label }}" class="form-label">SSC Roll *</label>
+        {{ form.sscRoll|add_class:"form-control" }}
+    </div>
+    <div class="col-md-3">
+        <label for="{{ form.sscReg.id_for_label }}" class="form-label">SSC Registration *</label>
+        {{ form.sscReg|add_class:"form-control" }}
+    </div>
+    <div class="col-md-3">
+        <label for="{{ form.ssc_session.id_for_label }}" class="form-label">SSC Session *</label>
+        {{ form.ssc_session|add_class:"form-select" }}
+    </div>
+    <div class="col-md-3">
+        <label for="{{ form.sscGpa.id_for_label }}" class="form-label">SSC GPA *</label>
+        {{ form.sscGpa|add_class:"form-control" }}
+    </div>
+</div>
+
+<hr class="my-4">
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <h5 class="fw-semibold">Main/Compulsory Subjects</h5>
+        <div class="mb-2">
+            {% for subject in compulsory_subjects %}
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" checked disabled>
+                    <label class="form-check-label fw-normal">{{ subject.subject_name }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <h5 class="fw-semibold mt-4">Optional Subjects</h5>
+        <div class="mb-2">
+            {% for subject in optional_subjects %}
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" checked disabled>
+                    <label class="form-check-label fw-normal">{{ subject.subject_name }}</label>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-4">
+    <h5 class="fw-semibold">Elective Subjects</h5>
+    {{ form.mainSubjects }}
+    {% if form.mainSubjects.errors %}
+        <div class="text-danger small mt-1">
+            {% for e in form.mainSubjects.errors %}{{ e }}<br>{% endfor %}
+        </div>
+    {% endif %}
+</div>
+<div class="col-md-4">
+    <h5 class="fw-semibold">Additional/4th Subjects</h5>
+    {{ form.FourSubjects }}
+    {% if form.FourSubjects.errors %}
+        <div class="text-danger small mt-1">
+            {% for e in form.FourSubjects.errors %}{{ e }}<br>{% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+</div>
+
+
+
+
+      {% elif wizard.steps.current == 'payment' %}
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="{{ form.amount.id_for_label }}" class="form-label">Amount (BDT)</label>
+          {{ form.amount|add_class:"form-control" }}
+        </div>
+        <div class="col-md-4">
+          <label for="{{ form.method.id_for_label }}" class="form-label">Payment Method</label>
+          {{ form.method|add_class:"form-select" }}
+        </div>
+        <div class="col-md-4">
+          <label for="{{ form.transaction_id.id_for_label }}" class="form-label">Transaction ID</label>
+          {{ form.transaction_id|add_class:"form-control" }}
+        </div>
+        <div class="col-md-4">
+          <label for="{{ form.payment_date.id_for_label }}" class="form-label">Payment Date</label>
+          {{ form.payment_date|add_class:"form-control" }}
+        </div>
+        <div class="col-md-4">
+          <label for="{{ form.status.id_for_label }}" class="form-label">Status</label>
+          {{ form.status|add_class:"form-select" }}
+        </div>
+        <div class="col-md-4">
+          <label for="{{ form.receipt_number.id_for_label }}" class="form-label">Receipt Number</label>
+          {{ form.receipt_number|add_class:"form-control" }}
+        </div>
+      </div>
 
 
       {% else %}
@@ -357,36 +473,62 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // ---- Academic Step: Dynamic Additional/4th Subject Logic (RADIO) ----
-  // const mainRadios = document.querySelectorAll('input[name="main_subject"]');
-  // const fourthOptions = document.querySelectorAll('.fourth-option');
-  // if (mainRadios.length && fourthOptions.length) {
-  //   function updateFourthSubjectOptions() {
-  //     let selectedMain = document.querySelector('input[name="main_subject"]:checked');
-  //     let mainId = selectedMain ? selectedMain.value : null;
-  //     fourthOptions.forEach(function(optDiv) {
-  //       let radio = optDiv.querySelector('input[type="radio"]');
-  //       if (radio.value === mainId) {
-  //         optDiv.style.display = 'none';
-  //         radio.checked = false; // If hidden, uncheck it
-  //       } else {
-  //         optDiv.style.display = 'block';
-  //       }
-  //     });
-  //   }
-  //   mainRadios.forEach(radio => {
-  //     radio.addEventListener('change', updateFourthSubjectOptions);
-  //   });
-  //   updateFourthSubjectOptions(); // Run on load
-  // }
+  // Dynamic hide/show for Additional/4th subjects based on Elective selection
+  // function updateFourthSubjectOptions() {
+  //       let selectedMain = document.querySelector('input[name="mainSubjects"]:checked');
+  //       let mainId = selectedMain ? selectedMain.getAttribute('data-subject-id') : null;
+        
+  //       document.querySelectorAll('.fourth-option').forEach(function(optionDiv) {
+  //           let subjectId = optionDiv.getAttribute('data-subject-id');
+  //           let input = optionDiv.querySelector('input[type="radio"]');
+  //           if (subjectId === mainId) {
+  //               optionDiv.style.display = 'none';
+  //               if (input.checked) {
+  //                   input.checked = false;
+  //               }
+  //           } else {
+  //               optionDiv.style.display = 'block';
+  //           }
+  //       });
 
+        // Ensure a FourSubjects option is selected
+    //     let fourthSelected = document.querySelector('input[name="FourSubjects"]:checked');
+    //     if (!fourthSelected) {
+    //         let firstAvailable = document.querySelector('.fourth-option:not([style*="display: none"]) input[type="radio"]');
+    //         if (firstAvailable) {
+    //             firstAvailable.checked = true;
+    //         }
+    //     }
+    // }
 
+    // document.querySelectorAll('input[name="mainSubjects"]').forEach(function(radio) {
+    //     radio.addEventListener('change', updateFourthSubjectOptions);
+    // });
 
-  
+    // updateFourthSubjectOptions();
+
+  const feeTypeSelect = document.getElementById('{{ form.fee_type.id_for_label }}');
+  const amountInput = document.getElementById('{{ form.amount.id_for_label }}');
+
+  const feeAmounts = {
+    {% for fee in fee_types %}
+      "{{ fee.pk }}": "{{ fee.amount }}",
+    {% endfor %}
+  };
+
+  if(feeTypeSelect && amountInput){
+    feeTypeSelect.addEventListener('change', function() {
+      const selectedId = this.value;
+      if(selectedId && feeAmounts[selectedId]){
+        amountInput.value = feeAmounts[selectedId];
+      } else {
+        amountInput.value = '';
+      }
+    });
+  }
+
 });
 </script>
-
-
 
 </body>
 </html>
