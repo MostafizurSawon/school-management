@@ -10,7 +10,6 @@ from Admissions.forms import (
     HscAdmissionScienceForm, ParentInfoForm, AddressForm,
     AcademicInformationForm, PaymentForm
 )
-
 # import pdfkit
 
 
@@ -23,33 +22,35 @@ from Admissions.forms import (
 # from weasyprint import HTML
 # import tempfile
 
+
+
 def scienceStudents(request):
-    # 1. grab all sessions
     sessions = HscSession.objects.all().order_by('-session')
 
-    # 2. check for a session filter in the querystring
     session_id = request.GET.get('session')
+    mobile = request.GET.get('mobile', '').strip()
+
+    students = HscAdmissionScience.objects.all()
+
     if session_id:
-        # if provided, only students in that session
-        students = HscAdmissionScience.objects.filter(
-            hsc_session_id=session_id
-        ).select_related(
-            'hsc_session', 'parent_info', 'address', 'academic_info', 'payment'
-        ).order_by('-id')
+        students = students.filter(hsc_session_id=session_id)
         selected_session = get_object_or_404(HscSession, id=session_id)
     else:
-        # otherwise show all
-        students = HscAdmissionScience.objects.all().select_related(
-            'hsc_session', 'parent_info', 'address', 'academic_info', 'payment'
-        ).order_by('-id')
         selected_session = None
+
+    if mobile:
+        students = students.filter(mobile__icontains=mobile)
+
+    students = students.select_related(
+        'hsc_session', 'parent_info', 'address', 'academic_info', 'payment'
+    ).order_by('-id')
 
     return render(request, 'science-students.html', {
         'sessions': sessions,
         'students': students,
         'selected_session': selected_session,
+        'mobile_search': mobile,
     })
-
 
 
 

@@ -103,7 +103,7 @@
 <br>
 
 <!-- Session filter dropdown -->
-<form method="get" id="session-filter-form" style="margin-bottom:1.5rem; text-align:center;">
+<!-- <form method="get" id="session-filter-form" style="margin-bottom:1.5rem; text-align:center;">
   <label for="session-select" style="font-weight:bold; margin-right:0.5rem;">
     Filter by Session:
   </label>
@@ -120,7 +120,31 @@
       </option>
     {% endfor %}
   </select>
+</form> -->
+
+<form method="get" id="search-form" style="margin-bottom:1.5rem; text-align:center;">
+  <label for="session-select" style="font-weight:bold; margin-right:0.5rem;">
+    Filter by Session:
+  </label>
+  <select name="session" id="session-select"
+          onchange="document.getElementById('search-form').submit()"
+          style="padding:6px 10px; font-size:1rem;">
+    <option value="" {% if not selected_session %}selected{% endif %}>All Sessions</option>
+    {% for sess in sessions %}
+      <option value="{{ sess.id }}" {% if selected_session and sess.id == selected_session.id %}selected{% endif %}>
+        {{ sess.session }}
+      </option>
+    {% endfor %}
+  </select>
+
+  <label for="mobile-input" style="font-weight:bold; margin-left:1rem; margin-right:0.5rem;">
+    Student Mobile:
+  </label>
+  <input type="text" id="mobile-input" name="mobile" placeholder="Enter mobile number" value="{{ mobile_search }}" style="padding:6px 10px; font-size:1rem; width:180px;">
+
+  <button type="submit" class="btn-primary" style="margin-left:1rem; padding:6px 16px;">Search</button>
 </form>
+
 
 <br>
 <h1>HSC Science Admission - All Students Info</h1>
@@ -282,8 +306,8 @@
             <th>SSC Session</th>
             <th>SSC GPA</th>
             <th>Institution</th>
-            <th>Compulsory Subject</th>
-            <th>Optional Subject</th>
+            <th>Compulsory Subjects</th>
+            <th>Optional Subjects</th>
             <th>Main Subject</th>
             <th>Fourth Subject</th>
         </tr>
@@ -298,8 +322,27 @@
             <td>{% if student.academic_info.ssc_session %}{{ student.academic_info.ssc_session.session }}{% else %}-{% endif %}</td>
             <td>{{ student.academic_info.sscGpa }}</td>
             <td>{{ student.academic_info.sscInstitution }}</td>
-            <td>{% if student.academic_info.compulsorySubjects %}{{ student.academic_info.compulsorySubjects.subject_name }}{% else %}-{% endif %}</td>
-            <td>{% if student.academic_info.optionalSubjects %}{{ student.academic_info.optionalSubjects.subject_name }}{% else %}-{% endif %}</td>
+
+            <td>
+            {% if student.academic_info.compulsorySubjects.all %}
+                {% for subj in student.academic_info.compulsorySubjects.all %}
+                    {{ subj.subject_name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                -
+            {% endif %}
+            </td>
+
+            <td>
+            {% if student.academic_info.optionalSubjects.all %}
+                {% for subj in student.academic_info.optionalSubjects.all %}
+                    {{ subj.subject_name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            {% else %}
+                -
+            {% endif %}
+            </td>
+
             <td>{% if student.academic_info.mainSubjects %}{{ student.academic_info.mainSubjects.subject_name }}{% else %}-{% endif %}</td>
             <td>{% if student.academic_info.FourSubjects %}{{ student.academic_info.FourSubjects.subject_name }}{% else %}-{% endif %}</td>
         </tr>
