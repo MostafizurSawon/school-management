@@ -1,0 +1,48 @@
+
+<h1 class="text-2xl font-bold mb-4">All Exams</h1>
+
+<a href="{% url 'exams:create' %}" class="bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block hover:bg-blue-700">
+  Add New Exam
+</a>
+
+<table class="min-w-full border border-gray-300">
+  <thead>
+    <tr class="bg-gray-100">
+      <th class="border px-4 py-2">ID</th>
+      <th class="border px-4 py-2">Name</th>
+      <th class="border px-4 py-2">Level</th>
+      <th class="border px-4 py-2">Group</th>
+      <th class="border px-4 py-2">Date</th>
+      <th class="border px-4 py-2">Subjects</th>
+      <th class="border px-4 py-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for exam in exams %}
+      <tr>
+        <td class="border px-4 py-2">{{ exam.id }}</td>
+        <td class="border px-4 py-2">{{ exam.name }}</td>
+        <td class="border px-4 py-2">{{ exam.exam_level.name }}</td>
+        <td class="border px-4 py-2">{{ exam.group.name }}</td>
+        <td class="border px-4 py-2">{{ exam.exam_date }}</td>
+        <td class="border px-4 py-2">
+          {% for subject in exam.subjects.all %}
+            {{ subject.name }}{% if not forloop.last %}, {% endif %}
+          {% empty %}
+            None
+          {% endfor %}
+        </td>
+        <td class="border px-4 py-2 space-x-2">
+          <a href="{% url 'exams:detail' exam.pk %}" class="text-blue-600 hover:underline">View</a>
+          <a href="{% url 'exams:edit' exam.pk %}" class="text-green-600 hover:underline">Edit</a>
+          <a href="{% url 'exams:delete' exam.pk %}" class="text-red-600 hover:underline">Delete</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="7" class="border px-4 py-2 text-center text-gray-500">No exams found.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+

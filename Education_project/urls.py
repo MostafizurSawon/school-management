@@ -32,3 +32,10 @@ urlpatterns = [
     path('exam/', include('Exams.urls', namespace='exams')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+
+# https://cms.pochamariacollege.edu.bd/form/science.php
+# https://college.pochamariacollege.edu.bd/exams/create
+# 

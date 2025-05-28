@@ -1,0 +1,19 @@
+
+<h1 class="text-2xl font-bold mb-4">{{ exam.name }}</h1>
+
+<ul class="list-disc pl-6 mb-4">
+  <li><strong>Level:</strong> {{ exam.exam_level.name }}</li>
+  <li><strong>Group:</strong> {{ exam.group.name }}</li>
+  <li><strong>Date:</strong> {{ exam.exam_date }}</li>
+  <li><strong>Subjects:</strong>
+    <ul class="list-disc pl-6">
+      {% for subject in exam.subjects.all %}
+        <li>{{ subject.name }}</li>
+      {% empty %}
+        <li>No subjects assigned</li>
+      {% endfor %}
+    </ul>
+  </li>
+</ul>
+
+<a href="{% url 'exams:list' %}" class="text-blue-600 hover:underline">Back to list</a>
