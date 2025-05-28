@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import mark_safe
-from .models import SiteSettings
+from .models import SiteSettings, Notice
 
 # Register your models here.
 
@@ -14,3 +14,5 @@ class SiteSettingsAdmin(admin.ModelAdmin):
     list_display = ['institution_name', 'logo_preview', 'mobile_number']
 
 admin.site.register(SiteSettings, SiteSettingsAdmin)
+
+admin.site.register(Notice)

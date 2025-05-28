@@ -102,26 +102,6 @@
 </div>
 <br>
 
-<!-- Session filter dropdown -->
-<!-- <form method="get" id="session-filter-form" style="margin-bottom:1.5rem; text-align:center;">
-  <label for="session-select" style="font-weight:bold; margin-right:0.5rem;">
-    Filter by Session:
-  </label>
-  <select name="session" id="session-select"
-          onchange="document.getElementById('session-filter-form').submit()"
-          style="padding:6px 10px; font-size:1rem;">
-    <option value="" {% if not selected_session %}selected{% endif %}>
-      All Sessions
-    </option>
-    {% for sess in sessions %}
-      <option value="{{ sess.id }}"
-        {% if selected_session and sess.id == selected_session.id %}selected{% endif %}>
-        {{ sess.session }}
-      </option>
-    {% endfor %}
-  </select>
-</form> -->
-
 <form method="get" id="search-form" style="margin-bottom:1.5rem; text-align:center;">
   <label for="session-select" style="font-weight:bold; margin-right:0.5rem;">
     Filter by Session:
@@ -144,7 +124,6 @@
 
   <button type="submit" class="btn-primary" style="margin-left:1rem; padding:6px 16px;">Search</button>
 </form>
-
 
 <br>
 <h1>HSC Science Admission - All Students Info</h1>
@@ -324,7 +303,7 @@
             <td>{{ student.academic_info.sscInstitution }}</td>
 
             <td>
-            {% if student.academic_info.compulsorySubjects.all %}
+            {% if student.academic_info.compulsorySubjects.exists %}
                 {% for subj in student.academic_info.compulsorySubjects.all %}
                     {{ subj.subject_name }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
@@ -334,7 +313,7 @@
             </td>
 
             <td>
-            {% if student.academic_info.optionalSubjects.all %}
+            {% if student.academic_info.optionalSubjects.exists %}
                 {% for subj in student.academic_info.optionalSubjects.all %}
                     {{ subj.subject_name }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}

@@ -29,4 +29,6 @@ urlpatterns = [
     path('accounts/', include('UserProfiles.urls')),
     path('admissions/', include('Admissions.urls')),
     path('student-infos/', include('StudentsInfos.urls')),
+    path('exam/', include('Exams.urls', namespace='exams')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

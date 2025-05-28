@@ -22,7 +22,6 @@ class SiteSettings(models.Model):
 class Notice(models.Model):
     notice_title = models.CharField(max_length=255, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
-    notice_description = models.TextField(blank=True, null=True)
     notice_file = models.FileField(upload_to='notices/', blank=True, null=True)
 
     def __str__(self):

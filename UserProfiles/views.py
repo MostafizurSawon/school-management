@@ -93,7 +93,9 @@ def site_settings_view(request):
         form = SiteSettingsForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            messages.success(request, "Institution info updated successfully!")
+            # Redirect back to the same page or profile as needed:
+            return redirect('general_settings')  # or 'profile'
     else:
         form = SiteSettingsForm(instance=instance)
  

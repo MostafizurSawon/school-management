@@ -34,22 +34,22 @@
     {% block main-dashboard %}
     <main class="flex-1 p-6">
         <div class="navbar bg-base-100 shadow-sm col-span-5">
-            <div class="btn-bar">
-    <a class="btn-primary" href="{% url 'home' %}">Home</a>
-    <a class="btn-primary" href="{% url 'hsc_science_admission' %}">Science Admission</a>
-    <br>
-    <a class="btn-primary" href="{% url 'hsc_arts_admission' %}">Arts Admission</a>
-    <br>
-    <a class="btn-primary" href="{% url 'hsc_commerce_admission' %}">Commerce Admission</a>
-    <br>
-    <a class="btn-primary" href="{% url 'add_admission_fee' %}">Add Fee</a>
-    <br>
-    <a class="btn-primary" href="{% url 'science_students' %}">Science Student Infos</a>
-    <a class="btn-primary" href="{% url 'user_logout' %}">Log Out</a>
-  </div>
+            <!-- <div class="btn-bar">
+                <a class="btn-primary" href="{% url 'home' %}">Home</a>
+                <a class="btn-primary" href="{% url 'hsc_science_admission' %}">Science Admission</a>
+                <br>
+                <a class="btn-primary" href="{% url 'hsc_arts_admission' %}">Arts Admission</a>
+                <br>
+                <a class="btn-primary" href="{% url 'hsc_commerce_admission' %}">Commerce Admission</a>
+                <br>
+                <a class="btn-primary" href="{% url 'add_admission_fee' %}">Add Fee</a>
+                <br>
+                <a class="btn-primary" href="{% url 'science_students' %}">Science Student Infos</a>
+                <a class="btn-primary" href="{% url 'user_logout' %}">Log Out</a>
+            </div> -->
             <div class="navbar-start">
               {% if site_settings.logo %}
-                <a href="/index.html" class="flex justify-center items-center">
+                <a href="{% url 'home' %}" class="flex justify-center items-center">
                     <img class="md:w-36 sm:w-24 w-16 min-w-10 lg:px-5 sm:px-2" src="{{ site_settings.logo.url }}"
                         alt="Pochamaria Degree College">
                 </a>
@@ -113,7 +113,24 @@
     </main>
     {% endblock main-dashboard %}
     
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tooltip = document.getElementById('success-tooltip');
+    if (tooltip) {
+      // Show tooltip
+      tooltip.style.opacity = '1';
+      tooltip.style.pointerEvents = 'auto';
+      
+      // Hide tooltip after 2 seconds
+      setTimeout(() => {
+        tooltip.style.opacity = '0';
+        tooltip.style.pointerEvents = 'none';
+      }, 2000);
+    }
+  });
+</script>
 
 </body>
 
 </html>
+

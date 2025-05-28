@@ -1,188 +1,139 @@
 {% extends 'profile.html' %}
-
-
 {% load static %}
 
+{% block sidebar %}
+  {% include 'dashboard-sidebar.html' %}
+{% endblock sidebar %}
 
-    <!-- Sidebar -->
-    {% block sidebar %}
-
-    {% include 'dashboard-sidebar.html' %}
-
-    {% endblock sidebar %}
-
-    {% block main-dashboard %} 
-    <!-- Main content -->
-    <main class="flex-1 p-6">
-        <div class="navbar bg-base-100 shadow-sm col-span-5">
-
-            <div class="navbar-start">
-                <a class="btn btn-ghost text-xl">
-                    <img src="images/logo/logo-light-text.png" alt="JBD Academy" srcset="JBD Academy"
-                        class="w-auto max-h-13">
-                </a>
-            </div>
-            <div class="navbar-end">
-                <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-                        <div class="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                        </div>
-                    </div>
-                    <ul tabindex="0"
-                        class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li>
-                            <a class="justify-between">
-                                Profile
-                                <span class="badge">New</span>
-                            </a>
-                        </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
-                    </ul>
-                </div>
-            </div>
+{% block main-dashboard %}
+{% if messages %}
+  <div id="success-tooltip"
+       class="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none z-50 font-semibold select-none"
+       role="alert" aria-live="assertive" aria-atomic="true">
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  </div>
+{% endif %}
 
 
+<main class="flex-1 p-6">
+  <div class="navbar bg-base-100 shadow-sm col-span-5">
 
+    <div class="navbar-start">
+      <a class="btn btn-ghost text-xl">
+        <img src="{% static 'images/logo/logo-light-text.png' %}" alt="JBD Academy" class="w-auto max-h-13" />
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="dropdown dropdown-end">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full">
+            <img alt="User Avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          </div>
         </div>
-        <!-- content -->
-        <div class="mt-4 overflow-y-auto h-[calc(100vh-120px)]">
-            <form class="w-full" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    
-    <div class="divider my-8 text-xl font-bold text-blue-500">Website Info</div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+          <li><a class="justify-between">Profile <span class="badge">New</span></a></li>
+          <li><a>Settings</a></li>
+          <li><a>Logout</a></li>
+        </ul>
+      </div>
+    </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
+  </div>
+
+  <div class="mt-4 overflow-y-auto h-[calc(100vh-120px)]">
+    <form method="post" enctype="multipart/form-data" class="w-full">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+
+      <div class="divider my-8 text-xl font-bold text-blue-500">Website Info</div>
+
+      <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label for="institution_name" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Institution Name
-            </label>
-            <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                name="institution_name" id="institution_name" type="text"
-                value="{{ site_settings.institution_name }}">
+          {{ form.institution_name.label_tag }}
+          {{ form.institution_name }}
+          {{ form.institution_name.errors }}
         </div>
-
         <div class="w-full md:w-1/2 px-3">
-            <label for="institution_description" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Institution Description
-            </label>
-            <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                name="institution_description" id="institution_description" type="text"
-                value="{{ site_settings.institution_description }}" placeholder="Enter description">
+          {{ form.institution_description.label_tag }}
+          {{ form.institution_description }}
+          {{ form.institution_description.errors }}
         </div>
-    </div>
+      </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
-            <label for="footer" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Footer Text
-            </label>
-            <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                name="footer" id="footer" type="text"
-                value="{{ site_settings.footer }}" placeholder="Enter footer text">
+          {{ form.footer.label_tag }}
+          {{ form.footer }}
+          {{ form.footer.errors }}
         </div>
-    </div>
+      </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
-            <label for="address" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Address
-            </label>
-            <textarea
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                name="address" id="address" rows="3"
-                placeholder="Enter institution address">{{ site_settings.address }}</textarea>
+          {{ form.address.label_tag }}
+          {{ form.address }}
+          {{ form.address.errors }}
         </div>
-    </div>
+      </div>
 
-    <div class="divider my-8 text-xl font-bold text-blue-500">Contact Info</div>
+      <div class="divider my-8 text-xl font-bold text-blue-500">Contact Info</div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label for="mobile_number" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Mobile Number
-            </label>
-            <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                name="mobile_number" id="mobile_number" type="text"
-                value="{{ site_settings.mobile_number }}" placeholder="Enter mobile number">
+          {{ form.mobile_number.label_tag }}
+          {{ form.mobile_number }}
+          {{ form.mobile_number.errors }}
         </div>
-
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label for="email" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Email Address
-            </label>
-            <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                name="email" id="email" type="email"
-                value="{{ site_settings.email }}" placeholder="Enter email address">
+          {{ form.email.label_tag }}
+          {{ form.email }}
+          {{ form.email.errors }}
         </div>
-    </div>
+      </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
-            <label for="website" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Website URL
-            </label>
-            <input
-                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                name="website" id="website" type="url"
-                value="{{ site_settings.website }}" placeholder="Enter website URL">
+          {{ form.website.label_tag }}
+          {{ form.website }}
+          {{ form.website.errors }}
         </div>
-    </div>
+      </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full md:w-1/2 px-3">
-            <label for="website_logo" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Website Logo
-            </label>
-            {% if site_settings.logo %}
-                <img src="{{ site_settings.logo.url }}" alt="Current Logo" width="60px" height="60px" style="margin-bottom: 10px;">
-            {% endif %}
-            <input id="website_logo" type="file" name="website_logo"
-                class="file-input w-full"
-                title="Upload website logo" placeholder="Choose logo file" />
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Website Logo</label>
+          {% if form.instance.logo %}
+            <img src="{{ form.instance.logo.url }}" alt="Current Logo" width="60" height="60" class="mb-2" />
+          {% endif %}
+          {{ form.logo }}
+          {{ form.logo.errors }}
         </div>
-
         <div class="w-full md:w-1/2 px-3">
-            <label for="website_favicon" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                Website Favicon
-            </label>
-            {% if site_settings.favicon %}
-                <img src="{{ site_settings.favicon.url }}" alt="Current Favicon" width="60px" height="60px">
-            {% endif %}
-            <input id="website_favicon" type="file" name="website_favicon"
-                class="file-input w-full"
-                title="Upload website favicon" placeholder="Choose favicon file" />
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Website Favicon</label>
+          {% if form.instance.favicon %}
+            <img src="{{ form.instance.favicon.url }}" alt="Current Favicon" width="60" height="60" class="mb-2" />
+          {% endif %}
+          {{ form.favicon }}
+          {{ form.favicon.errors }}
         </div>
-    </div>
+      </div>
 
-    <div class="flex flex-wrap -mx-3 mb-6">
-        <button type="reset" title="Cancel all changes"
-            class="btn btn-active btn-warning text-white ml-4 bg-[#F74343] hover:bg-[#F36642]">
-            Cancel
-        </button>
-        <button type="submit" name="save_settings" title="Save changes"
-            class="btn btn-active bg-blue-500 text-white hover:bg-blue-400 transition-all duration-300">
-            Save
-        </button>
-    </div>
-</form>
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <button type="reset" title="Cancel all changes" class="btn btn-active btn-warning text-white ml-4 bg-[#F74343] hover:bg-[#F36642]">Cancel</button>
+        <button type="submit" name="save_settings" title="Save changes" class="btn btn-active bg-blue-500 text-white hover:bg-blue-400 transition-all duration-300">Save</button>
+      </div>
+    </form>
 
-            <footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
-                <aside>
-                    <p>Copyright © 2025 JBD Academy & design and develop by <a class="text-[#14a800] hover:text-red-500 transition-all duration-300 cursor-pointer" href="http://https://jbdit.com.bd" target="_blank" rel="noopener noreferrer">JBD IT</a></p>
-                </aside>
-            </footer>
-        </div>
-    </main>
-    {% endblock main-dashboard %} 
-
-</body>
-
-</html>
+    <footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
+      <aside>
+        <p>Copyright © 2025 JBD Academy & design and develop by
+          <a class="text-[#14a800] hover:text-red-500 transition-all duration-300 cursor-pointer" href="http://jbdit.com.bd" target="_blank" rel="noopener noreferrer">JBD IT</a>
+        </p>
+      </aside>
+    </footer>
+  </div>
+</main>
+{% endblock main-dashboard %}

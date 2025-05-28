@@ -52,6 +52,7 @@
                     </div>
                 </div>
             </div>
+            
             <!-- menu item 3-->
             <div x-data="{ open: false }" class="mt-2">
                 <button @click="open = !open"
@@ -75,14 +76,39 @@
             </div>
 
 
+            <div x-data="{ open: false }" class="mt-2"></div>
+                <a class="btn-primary" href="{% url 'home' %}">Home</a>
+                <br>
+                <a class="btn-primary" href="{% url 'hsc_science_admission' %}">Science Admission</a>
+                <br>
+                <a class="btn-primary" href="{% url 'hsc_arts_admission' %}">Arts Admission</a>
+                <br>
+                <a class="btn-primary" href="{% url 'hsc_commerce_admission' %}">Commerce Admission</a>
+                <br>
+                <a class="btn-primary" href="{% url 'add_admission_fee' %}">Add Fee</a>
+                <br>
+                <a class="btn-primary" href="{% url 'science_students' %}">Science Student Infos</a>
+                <br>
+                <a class="btn-primary" href="{% url 'exams:create' %}">Add Exam</a>
+                <br>
+                <a href="{% url 'exams:ajax_load_groups' %}?exam_level=1">Load Groups for Exam Level 1</a>
+                <br>
+                <a href="{% url 'exams:ajax_load_subjects' %}?group=1">Load Subjects for Group 1</a>
+
+                <br>
+                <a class="btn-primary" href="{% url 'user_logout' %}">Log Out</a>
+            </div>
 
             <!-- footer  menu -->
 
             <div
                 :class="open ? 'w-64 transition-all duration-300 fixed bottom-0 left-0' : 'w-16 transition-all duration-300 fixed bottom-0 left-0'">
-                <button
-                    class="btn-block btn bg-[#424b59] outline-none border-none text-white hover:text-gray-300  py-2 px-2 rounded-none hover:bg-[]"><i
-                        class="fa-solid fa-right-from-bracket shadow-none"></i> Logout</button>
+                <a href="{% url 'user_logout' %}">
+                    <button class="btn-block btn bg-[#424b59] outline-none border-none text-white hover:text-gray-300  py-2 px-2 rounded-none hover:bg-[]">
+                        <i class="fa-solid fa-right-from-bracket shadow-none"></i> Logout
+                    </button>
+                </a>
+                
             </div>
         </nav>
     </div>

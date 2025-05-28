@@ -1,0 +1,124 @@
+{% load static %}
+{% load form_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add Exam</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+
+  <!-- Full width container with horizontal padding -->
+  <div class="bg-white rounded-lg shadow-lg w-full px-6 md:px-16 py-8 mx-auto">
+    <h1 class="text-3xl font-semibold mb-8 text-center text-blue-600">Add New Exam</h1>
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <!-- Inputs in the same line using flexbox -->
+      <div class="flex flex-wrap gap-6 mb-8">
+
+        <!-- exam_level -->
+        <div class="w-full sm:w-1/4">
+          {{ form.exam_level.label_tag }}
+          {{ form.exam_level|add_class:"w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" }}
+          {% if form.exam_level.errors %}
+            <p class="text-red-600 mt-1 text-sm">{{ form.exam_level.errors }}</p>
+          {% endif %}
+        </div>
+
+        <!-- group -->
+        <div class="w-full sm:w-1/4">
+          {{ form.group.label_tag }}
+          <select id="id_group" name="group" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="">---------</option>
+          </select>
+          {% if form.group.errors %}
+            <p class="text-red-600 mt-1 text-sm">{{ form.group.errors }}</p>
+          {% endif %}
+        </div>
+
+        <!-- name -->
+        <div class="w-full sm:w-1/4">
+          {{ form.name.label_tag }}
+          {{ form.name|add_class:"w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" }}
+          {% if form.name.errors %}
+            <p class="text-red-600 mt-1 text-sm">{{ form.name.errors }}</p>
+          {% endif %}
+        </div>
+
+        <!-- exam_date -->
+        <div class="w-full sm:w-1/4">
+          {{ form.exam_date.label_tag }}
+          {{ form.exam_date|add_class:"w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" }}
+          {% if form.exam_date.errors %}
+            <p class="text-red-600 mt-1 text-sm">{{ form.exam_date.errors }}</p>
+          {% endif %}
+        </div>
+
+      </div>
+
+      <!-- Subjects checkboxes in full width grid below inputs -->
+      <div class="mt-10">
+        <label class="block mb-2 font-medium text-gray-700">Subjects</label>
+        <div id="id_subjects" class="border border-gray-300 rounded p-4 bg-gray-50 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 min-h-[120px]">
+          <p class="col-span-full text-gray-400 italic">Select a group to load subjects.</p>
+        </div>
+        {% if form.subjects.errors %}
+          <p class="text-red-600 mt-1 text-sm">{{ form.subjects.errors }}</p>
+        {% endif %}
+      </div>
+
+      <div class="mt-10 text-center">
+        <button type="submit" class="bg-blue-600 text-white px-10 py-3 rounded hover:bg-blue-700 transition">Save</button>
+      </div>
+    </form>
+  </div>
+
+<script>
+$(document).ready(function(){
+    $('#id_exam_level').change(function(){
+        var url = "{% url 'exams:ajax_load_groups' %}";
+        var examLevelId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {'exam_level': examLevelId},
+            success: function(data){
+                $("#id_group").html('<option value="">---------</option>');
+                data.forEach(function(group){
+                    $("#id_group").append('<option value="' + group.id + '">' + group.name + '</option>');
+                });
+                $("#id_subjects").html('<p class="text-gray-400 italic">Select a group to load subjects.</p>');
+            }
+        });
+    });
+
+    $('#id_group').change(function(){
+        var url = "{% url 'exams:ajax_load_subjects' %}";
+        var groupId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {'group': groupId},
+            success: function(data){
+                $("#id_subjects").empty();
+                if(data.length === 0) {
+                  $("#id_subjects").html('<p class="text-gray-400 italic">No subjects available for this group.</p>');
+                } else {
+                  data.forEach(function(subject){
+                    var checkbox = '<label class="inline-flex items-center space-x-2 mb-1 cursor-pointer"><input type="checkbox" name="subjects" value="' + subject.id + '" class="form-checkbox text-blue-600">' +
+                      '<span>' + subject.name + '</span></label><br>';
+                    $("#id_subjects").append(checkbox);
+                  });
+                }
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>

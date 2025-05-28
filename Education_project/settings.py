@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'UserProfiles',
     'Admissions',
     'StudentsInfos',
+    'Exams',
 ]
 
 MIDDLEWARE = [

@@ -16,11 +16,36 @@
 <body class="w-full">
 
     <div class="py-10 mx-auto max-w-7xl">
+
+        <!-- Institution Info Section -->
+        <!-- <div class="mb-6 p-4 border border-gray-300 rounded bg-white shadow-sm flex items-center space-x-6">
+            {% if site_settings.logo %}
+                <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.institution_name }}" class="h-20 w-auto" />
+            {% endif %}
+            <div>
+                <h2 class="text-2xl font-bold">{{ site_settings.institution_name }}</h2>
+                {% if site_settings.institution_description %}
+                <p class="text-gray-600">{{ site_settings.institution_description }}</p>
+                {% endif %}
+                {% if site_settings.address %}
+                <p class="text-sm text-gray-500">{{ site_settings.address }}</p>
+                {% endif %}
+                <p class="text-sm text-gray-500">
+                    Phone: {{ site_settings.mobile_number }} | Email: {{ site_settings.email }}
+                </p>
+                {% if site_settings.website %}
+                <p><a href="{{ site_settings.website }}" class="text-blue-600 hover:underline" target="_blank" rel="noopener">{{ site_settings.website }}</a></p>
+                {% endif %}
+            </div>
+        </div> -->
+
         <!-- header part -->
         <div class="grid grid-cols-3 justify-center items-center bg-white pb-5">
             <!-- left -->
             <div class="flex justify-start items-center">
-                <img src="{% static 'logos/PDCLOGO.png' %}" alt="Logo" class="w-auto h-40" />
+                {% if site_settings.logo %}
+                    <img src="{{ site_settings.logo.url }}" alt="{{ site_settings.institution_name }}" class="h-20 w-auto" />
+                {% endif %}
             </div>
             <!-- middle -->
             <div class="flex flex-col justify-center space-y-3 items-center">
@@ -31,7 +56,7 @@
             <div class="avatar flex justify-end items-center">
                 <div class="w-40 h-40 object-cover rounded">
                     {% if student.photo %}
-                    <img src="{{ student.photo.url }}" alt="{{ student.name }}" />
+                    <img src="{{ student.photo.url }}" alt="{{ student.name }}" width="50px" />
                     {% else %}
                     <img src="{% static 'images/default-avatar.png' %}" alt="Default Avatar" />
                     {% endif %}
@@ -92,8 +117,7 @@
                 <div class="border border-gray-300 p-2">{{ student.marital_status }}</div>
 
                 <div class="border border-gray-300 p-2 font-semibold">Age:</div>
-                <div class="border border-gray-300 p-2">
-                </div>
+                <div class="border border-gray-300 p-2"></div>
 
                 <div class="border border-gray-300 p-2 font-semibold">Gender:</div>
                 <div class="border border-gray-300 p-2">{{ student.gender }}</div>
@@ -291,7 +315,7 @@
                     <div class="avatar flex justify-end items-center mb-2">
                         <div class="w-auto h-24 object-cover rounded">
                             <!-- You can replace with signature images if available -->
-                            <img src="{% static 'images/signature-placeholder.png' %}" alt="Applicant Signature" />
+                            <!-- <img src="{% static 'images/signature-placeholder.png' %}" alt="Applicant Signature" /> -->
                         </div>
                     </div>
                     <div class="border-t-2 w-48 mx-auto"></div>
@@ -302,7 +326,7 @@
                     <div class="avatar flex justify-end items-center mb-2">
                         <div class="w-auto h-24 object-cover rounded">
                             <!-- You can replace with signature images if available -->
-                            <img src="{% static 'images/signature-placeholder.png' %}" alt="Principal Signature" />
+                            <!-- <img src="{% static 'images/signature-placeholder.png' %}" alt="Principal Signature" /> -->
                         </div>
                     </div>
                     <div class="border-t-2 w-48 mx-auto"></div>
@@ -310,11 +334,30 @@
                 </div>
             </div>
 
+            <button id="st-pdf-button" class="btn btn-primary">Download PDF</button>
             <div class="text-center mt-10">
                 <p class="text-sm text-gray-600">Education Management System - Designed & Developed by JBD IT.</p>
             </div>
         </div>
     </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+  document.getElementById('st-pdf-button').addEventListener('click', () => {
+    const element = document.body; // Or a specific div you want to convert
+    const opt = {
+      margin:       0.5,
+      filename:     'admission_form.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, logging: true, dpi: 192, letterRendering: true },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(element).save();
+  });
+</script>
+
 </body>
 
 </html>

@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from Admissions.models import HscAdmissionScience, ParentInfo, Address, AcademicInformation, Payment, HscSession
+from Admissions.models import HscAdmissionScience, ParentInfo, Address, AcademicInformation, Payment, HscSessionForPayment, HscScienceCompulsorySubjects, HscScienceOptionalSubjects
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 import os
+from django.db.models import Prefetch
 from django.conf import settings
 from Admissions.forms import (
     HscAdmissionScienceForm, ParentInfoForm, AddressForm,
@@ -24,8 +25,10 @@ from Admissions.forms import (
 
 
 
+
+
 def scienceStudents(request):
-    sessions = HscSession.objects.all().order_by('-session')
+    sessions = HscSessionForPayment.objects.all().order_by('-session')
 
     session_id = request.GET.get('session')
     mobile = request.GET.get('mobile', '').strip()
@@ -34,15 +37,25 @@ def scienceStudents(request):
 
     if session_id:
         students = students.filter(hsc_session_id=session_id)
-        selected_session = get_object_or_404(HscSession, id=session_id)
+        selected_session = get_object_or_404(HscSessionForPayment, id=session_id)
     else:
         selected_session = None
 
     if mobile:
         students = students.filter(mobile__icontains=mobile)
 
+    # Prefetch compulsory and optional subjects inside academic_info
     students = students.select_related(
         'hsc_session', 'parent_info', 'address', 'academic_info', 'payment'
+    ).prefetch_related(
+        Prefetch(
+            'academic_info__compulsorySubjects',
+            queryset=HscScienceCompulsorySubjects.objects.filter(is_active=True)
+        ),
+        Prefetch(
+            'academic_info__optionalSubjects',
+            queryset=HscScienceOptionalSubjects.objects.filter(is_active=True)
+        ),
     ).order_by('-id')
 
     return render(request, 'science-students.html', {
@@ -51,6 +64,7 @@ def scienceStudents(request):
         'selected_session': selected_session,
         'mobile_search': mobile,
     })
+
 
 
 
